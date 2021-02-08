@@ -25,7 +25,7 @@ If you've out guessed the computer in all three rounds, and your score is subseq
 
 1. When a user first enters into the game, they are prompted to enter into the game via a button. (Stretch Goal)
 
-![OpeningPage](imgs/opening-page.png)
+![OpeningPage](imgs/Opening-page.png)
 
 
 2. Upon clicking the button, the following screen is the game entry page.  There is a main window that auto populates with a product, a product description as well as a photo of the item.  (Strech Goal)
