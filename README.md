@@ -103,7 +103,7 @@ If you've made it passed both main rounds by beating the computer, a final, rapi
 
    (Example shown below)
 
-        4a. Additional strech goal related to thi:  To add a button to the main game play page and functionality where a user may be able to "skip" a product as a way to get an advantage.  They could be redirected to this page of buttons where they would choose a different category and a random product would then populate in place of the previous one.  Of course it would come a price of their total tallied points as well.
+        4a. Additional strech goal related to this:  To add a button to the main game play page and functionality where a user may be able to "skip" a product as a way to get an advantage.  They could be redirected to this page of buttons where they would choose a different category and a random product would then populate in place of the previous one.  Of course it would come a price of their total tallied points as well.
 
 
 ![category choice](imgs/category-choice-page.png)
