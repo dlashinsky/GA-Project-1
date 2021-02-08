@@ -1,19 +1,33 @@
 console.log("FIRE AWAY, IM READDDY TO GO!")
 
 
+var testArr = ["Dog", "Cat", "bird", "snake", "moose", "wolf",]
+
+let testRando = Math.floor(Math.random () * testArr.length);
+
+console.log(testArr[testRando])
+console.log(testRando)
+
+
+
 //State Variables 
 
 
     // let realPrice = null;
     // let realReview = null;
     // let realWeight = null;
-    // let guessPrice = null;
-    // let guessReview = null;
-    // let guessWeight = null;
+    // let userGuessPrice = null;
+    // let userGuessReview = null;
+    // let userGuessWeight = null;
     // let playerScore = 0;
+    // let compGuessPrice = null;
+    // let compGuessReview = null;
+    // let compGuessWeight = null;
     // let computerScore = 0;
     // let currentRound = null;
-    // let guessDiffPerc = null;
+    // let userGuessPercent = null;
+    // let compGuessPercent = null;
+    // let randomProductIndex = null;
     
 
 
@@ -47,16 +61,18 @@ console.log("FIRE AWAY, IM READDDY TO GO!")
 
 
 // Product Array
-    //const randomProduct = [
+    //const products = [
         //instantPot {
-            //Title: "Instant Pot Max"
-            //Description: "Pressure Cooker, 9 in 1 Best for Canning with 15PSI and serilizer, 6QT"
-            //Price: 100
-            //Rating: 4.7
-            //Weight: 14.2
+            //title: "Instant Pot Max"
+            //description: "Pressure Cooker, 9 in 1 Best for Canning with 15PSI and serilizer, 6QT"
+            //category: "Home & Kitchen"
+            //price: 100
+            //rating: 4.7
+            //weight: 14.2
+            //image: "imgs/instant-pot.png"
     //     }
     // ]
-
+  //////NOTE:  Should create a class for the new product Objects///////
 
 
 //Event Listeners
@@ -68,17 +84,39 @@ console.log("FIRE AWAY, IM READDDY TO GO!")
 
 
 //Game Initialization 
-    //function initializeGame (){};
-    //Step 1:
-    // Selecting a random product from the Array entering into the state variable associated with product 
+    //function initializeGame () {
+   // //Step 1: Selecting a random product from the Array and DOM into page
 
+        // //random index generator
+            // randomProductIndex = Math.floor(Math.random() * products.length) 
+
+
+        // DOM insert into page
+            // //Replace/Insert product image
+                //prodImgEl.img.src = products[randomProductIndex].image
+
+            // //Insert Product Title
+                //prodTitleEl.innerText = products[randomProductIndex].title
+
+            // //Insert Product Description
+                //prodTitleEl.innerText = products[randomProductIndex].description
+
+                
+    
     //Step 2: 
     // Inputting all the data from the product (eg. Price, etc) into state variables.  
+    
+                    //realPrice = products[randomProductIndex].price
+                    //realReview = products[randomProductIndex].review
+                    //realWeight = products[randomProductIndex].weight
 
 
+//};
+                
 //Guess Callback function 
     // Event listeners on the "play" button
     // check user guess vs. real values and run Evaluate function
+    // Randomizes computer's guess for the values 
     
     
 //Evaluate Entry Function
@@ -89,32 +127,53 @@ console.log("FIRE AWAY, IM READDDY TO GO!")
     //Award computer and user points based on that distance, with more points awarded being closer to the realValue, and less points
         //being awarded further away from the realValue.  Based on a teir system of percentages with conditional statements
             
-            // guessDiffPerc = (((realPrice - guessPrice.value) / realPrice) x 100)  
-           // (example: if(guessDiffPerc <= 5) {
-                //playerScore =+ 35
-                //run checkWin Function 
+            // userGuessPercent = (((realPrice - guessPrice.value) / realPrice) x 100)  
+                // (example: if(userGuessPercent <= 5) {
+                        //playerScore =+ 35
+                        //playerScoreEl.innerText(playerScore.Value)
+                        //checkWin function
+                
+                // //(strech goal)run nextRound Function 
+          // }
+            // compGuessPercent = (((realPrice - compPrice.value) / realPrice) x 100)  
+                // (example: if(compGuessPercent <= 5) {
+                        //computerScore =+ 35
+                        //computerScoreEl.innerText(computerScore.Value)
+                        //checkWin function
+                        
+                // //(strech goal)run nextRound Function 
           // }
         
 
         
 
-// checkWin Function 
+// checkWin function 
 
-    //Checks current round with condtional statment
-        //if(round.value < 4){r
-            //run displayWinner function
-          
-        //}else{
+    // if playerScore.value > computerScore.value {
+        //userWinEl.classlist.remove("hidden")
+        //
 
-            //Checks playerScore Value vs. Computer score value
-            //playerScoreEl.innerText(playerScore.value)
-            //computerScoreEl.innerText(computerScore.value)
-            //run next round function
-
-        //}
+   // }else{
+       //compWinEl.classlist.remove("hidden")
+  // }
 
 
-
-// displayWinner function 
-    //
-
+  // displayWinner function 
+  // 
+  
+  
+  // //(Strech Goal) nextRound Function 
+  
+      // // Checks current round with condtional statment to see if to end game
+     // //     if(round.value < 4){
+     // //         run displayWinner function
+            
+      // //     }else{
+  
+     // //         Checks playerScore Value vs. Computer score value
+     // //         playerScoreEl.innerText(playerScore.value)
+      // //         computerScoreEl.innerText(computerScore.value)
+     // //         round.value++
+     // //         run next round function
+  
+     // //     }
