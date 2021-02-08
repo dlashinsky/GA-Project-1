@@ -104,3 +104,7 @@ If you've out guessed the computer in all three rounds, and your score is subseq
 
 
 ![category choice](imgs/category-choice-page.png)
+
+
+
+5. Final strech goal will be linking into Amazon's API to automatically generate a product, with a product description, price and other data.  This way there is essentially an endless amount of products to guess on.  
