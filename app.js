@@ -45,7 +45,7 @@ console.log(testRando)
 
 
 // DOM Variables
-    // let prodImgEl = document.querySelector(".prod-img");
+    // let prodImgEl = document.querySelector("#prod-img");
     // let prodTitleEl = document.querySelector(".prod-title");
     // let prodDescEl = document.querySelector(".prod-description");
     // let prodCategoryEl = document.querySelector(".prod-category")
@@ -101,20 +101,38 @@ console.log(testRando)
             // //Insert Product Description
                 //prodTitleEl.innerText = products[randomProductIndex].description
 
+            // //Insert Product Category
+                //prodCategoryEl.innerText= products[randomProductIndex].category
+
                 
     
     //Step 2: 
     // Inputting all the data from the product (eg. Price, etc) into state variables.  
     
-                    //realPrice = products[randomProductIndex].price
-                    //realReview = products[randomProductIndex].review
-                    //realWeight = products[randomProductIndex].weight
+        //realPrice = products[randomProductIndex].price
+        //realReview = products[randomProductIndex].review
+        //realWeight = products[randomProductIndex].weight
+
+
+    //Step 3: 
+    // Inputting the game score values onto the page.  (and for strech goal the current round)
+
+        //computerScoreEl.innerText = computerScore.value
+        //playerScoreEl.innerText = playerScore.value
+
+        // // currentRoundEl.innerText = currentRound
+
+
 
 
 //};
+
+
                 
 //Guess Callback function 
     // Event listeners on the "play" button
+
+
     // check user guess vs. real values and run Evaluate function
     // Randomizes computer's guess for the values 
     

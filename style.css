@@ -1,0 +1,43 @@
+.main-container {
+    display:flex;
+    flex-direction: row;
+}
+
+.sub-container-left {
+    border: 2px solid blue;
+    padding: 1%;
+}
+
+.product-window {
+    border: 2px solid red;
+    padding: 5%;
+}
+
+.prod-title {
+    border: 2px solid greenyellow;
+    padding: 2%;
+}
+.prod-description {
+    border: 2px solid greenyellow;
+    padding: 2%;
+}
+.prod-photo-div {
+    border: 2px solid greenyellow;
+    padding: 2%;
+}
+
+#prod-img {
+    width: 20vw;
+    height: 20vw;
+}
+
+
+.sub-container-mid {
+    border: 2px solid blue;
+}
+
+
+
+.sub-container-right {
+    border: 2px solid blue;
+}
