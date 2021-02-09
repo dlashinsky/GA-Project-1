@@ -1,17 +1,38 @@
+body {
+    display: flex;
+    justify-content: center;
+}
+
 .main-container {
     display:flex;
     flex-direction: row;
+    width: 80%;
+    height: 65%;
+    justify-content: center;
 }
+
+
+
+/* ////////LEFT CONTAINER////////// */
+
+
 
 .sub-container-left {
     border: 2px solid blue;
-    padding: 1%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
 }
 
 .product-window {
     border: 2px solid red;
     padding: 5%;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
+
 
 .prod-title {
     border: 2px solid greenyellow;
@@ -32,12 +53,129 @@
 }
 
 
+
+
+
+/* ////////MIDDLE CONTAINER////////// */
+
+
+
+
+
 .sub-container-mid {
     border: 2px solid blue;
+    display: flex;
+    flex-direction: column;
+    width: 15%;
 }
+
+
+.GS-comp-score-div{
+    border: 2px solid red;
+    margin: 2%;
+    display: flex;
+    flex-direction: column;
+}
+
+#comp-score {
+    border: 2px solid greenyellow;
+}
+
+
+.GS-player-score-div{
+    border: 2px solid red;
+    margin: 2%;
+}
+#player-score {
+    border: 2px solid greenyellow;
+}
+
+
+.current-round-div{
+    border: 2px solid red;
+    margin: 2%;
+}
+
+#game-round {
+    border: 2px solid greenyellow;
+}
+
+.prod-category{
+    border: 2px solid red;
+    width: auto;
+    height: 150px;
+    padding: 5%;
+    margin: 2%;
+}
+
+
+
+
+
+/* ////////RIGHT CONTAINER////////// */
+
 
 
 
 .sub-container-right {
     border: 2px solid blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 200px;
+    text-align: center;
+}
+
+.gameplay-podium-div {
+    border: 2px solid red;
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center; */
+    width: 80%;
+    height: auto;
+    padding: 5%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.price-input-div {
+    border: 1px solid yellowgreen;
+    margin: 2%;
+    display:flex;
+    justify-content: center;
+    vertical-align: center;
+
+}
+
+
+.rating-input-div {
+    border: 1px solid yellowgreen;
+    margin: 2%;
+    display:flex;
+    justify-content: center;
+    vertical-align: center;
+}
+
+.weight-input-div {
+    border: 1px solid yellowgreen;
+    margin: 2%;
+    display:flex;
+    justify-content: center;
+    vertical-align: center;
+  
+}
+
+
+.input {
+    width: 5vw;
+    height: 1vw;
+    margin-top: 2%;
+    margin-left: 8%;
+    
+}
+
+.symbol {
+    width: 4vw;
+    height: auto;
+    border: 1px solid magenta;
 }

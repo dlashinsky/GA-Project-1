@@ -28,13 +28,13 @@
 
             <div class = GS-comp-score-div> Computer Score
                 
-                <div class= GS-values id= comp-score></div>
+                <div class= GS-values id= comp-score>45</div>
 
             </div>
 
             <div class = GS-player-score-div> Your Score
                 
-                <div class = GS-values id= player-score></div>
+                <div class = GS-values id= player-score>45</div>
 
             </div>
                 
@@ -54,33 +54,36 @@
 
                 <div class = price-input-div>
 
-                    <img src="imgs/price-symbol.png" alt="img not found">
-                
-                    <input type="text" name="Product Price" id="guess-price-txt">
-                    .00
+                    <img class = symbol src="imgs/price-symbol.png" alt="img not found">
+
+                     
+                        <input class= input type="text" name="Product Price" id="guess-price-txt">
+                    
+                    
+                  
                 </div>
 
-                <div class = review-input-div> 
+                <div class = rating-input-div> 
 
-                    <img src="imgs/star-symbol.png" alt="img not found">
+                    <img class = symbol src="imgs/star-symbol.png" alt="img not found">
                     
-                    <input type="text" name="Product Review Rating" id="guess-review-txt">
-                    /5
+                    <input class= input type="text" name="Product Rating Value" id="guess-rating-txt">
+                 
                 </div>
 
                 <div class = weight-input-div>
 
-                    <img src="imgs/weight-symbol.png" alt="img not found">
+                    <img class = symbol src="imgs/weight-symbol.png" alt="img not found">
                 
-                    <input type="text" name="Product Weight" id="guess-weight-txt">
-                    LBs
+                    <input class= input type="text" name="Product Weight" id="guess-weight-txt">
+                  
                 </div>
 
             </div>
 
             <div class= guess-btn-div>
 
-                <button>MAKE YOUR GUESS!!</button>
+                <button id = guess-button>MAKE YOUR GUESS!!</button>
                
             </div>
 
@@ -94,6 +97,7 @@
 
 
     </div>
+
     
 </body>
 <script src="app.js"></script>
