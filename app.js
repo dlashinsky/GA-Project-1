@@ -59,55 +59,82 @@
             title: "Instant Pot Max",
             description: "Pressure Cooker, 9 in 1 Best for Canning with 15PSI and serilizer, 6QT",
             category: "Home & Kitchen",
-            price: 100,
+            price: 99.99,
             rating: 4.7,
             weight: 14.2,
             image: "imgs/instant-pot.png"
-        // },
-        // instantPot2 = {
-        //     title: "Instant Pot Max",
-        //     description: "Pressure Cooker, 9 in 1 Best for Canning with 15PSI and serilizer, 6QT",
-        //     category: "Home & Kitchen",
-        //     price: 90,
-        //     rating: 2.6,
-        //     weight: 55,
-        //     image: "imgs/instant-pot.png"
-        // },
-        // instantPot2 = {
-        //     title: "Instant Pot Max",
-        //     description: "Pressure Cooker, 9 in 1 Best for Canning with 15PSI and serilizer, 6QT",
-        //     category: "Home & Kitchen",
-        //     price: 80,
-        //     rating: 3.7,
-        //     weight: 6,
-        //     image: "imgs/instant-pot.png"
-        // },
-        // instantPot2 = {
-        //     title: "Instant Pot Max",
-        //     description: "Pressure Cooker, 9 in 1 Best for Canning with 15PSI and serilizer, 6QT",
-        //     category: "Home & Kitchen",
-        //     price: 70,
-        //     rating: 4.1,
-        //     weight: 30,
-        //     image: "imgs/instant-pot.png"
-        // },
-        // instantPot2 = {
-        //     title: "Instant Pot Max",
-        //     description: "Pressure Cooker, 9 in 1 Best for Canning with 15PSI and serilizer, 6QT",
-        //     category: "Home & Kitchen",
-        //     price: 60,
-        //     rating: 4.4,
-        //     weight: 4,
-        //     image: "imgs/instant-pot.png"
-        // },
-        // instantPot2 = {
-        //     title: "Instant Pot Max",
-        //     description: "Pressure Cooker, 9 in 1 Best for Canning with 15PSI and serilizer, 6QT",
-        //     category: "Home & Kitchen",
-        //     price: 50,
-        //     rating: 4.1,
-        //     weight: 18,
-        //     image: "imgs/instant-pot.png"
+        },
+        seniorWallDecal = {
+            title: "Wallmonkey Decal: Senior Woman with Asthma",
+            description: "Hang anywhere in your house!  Wall paint-safe; 48in x 41in decal; senior woman with asthma",
+            category: "Appliances > Refridgerators, Freezers & Ice Makers",
+            price: 49.99,
+            rating: 5,
+            weight: 1.5,
+            image: "imgs/senior-wall-decal.png"
+        },
+        fingerPuppets = {
+            title: "Tiny Hand Finger Puppets",
+            description: "Pack of 12, instead of the usual 10!  Halloween hand prop accessories; dishwasher safe",
+            category: "Toys & Games",
+            price: 10.97,
+            rating: 4.7,
+            weight: .25,
+            image: "imgs/tinyhands.png"
+        },
+        catTissueHolder = {
+            title: "Catt Butt Tissue Holder",
+            description: "Orange Tabby Cat. Fits square tissue box. Made from molded resin. Microwave Safe",
+            category: "Home & Kitchen > Bath > Bathroom Accessories > Holders & Dispensers > Tissue Holders",
+            price: 39.95,
+            rating: 4.7,
+            weight: 30,
+            image: "imgs/cat-tissue-holder.png"
+        },
+        karaokeHorn = {
+            title: "Karaoke Horn",
+            description: "Take your voice where ever you go! Ultra Heat safe silicone up to 550F, for the HOT voices out there.  Machine wash cold; tumble dry",
+            category: "None",
+            price: 69.36,
+            rating: 3.5,
+            weight: .58,
+            image: "imgs/karaoke-horn.png"
+        },
+        fingerCovers = {
+            title: "Finger Covers",
+            description: "Keep your fingers CLEAN with these finger food covers.  Enjoy your cheetos with peace.  3ct, red.  Washable, reusable, dishwasher safe.",
+            category: "Home & Kitchen > Kitchen & Dining > Kitchen Utensils & Gadgets",
+            price: 18.99,
+            rating: 4.4,
+            weight: .4,
+            image: "imgs/finger-covers.png"
+        },
+        desktopFridge = {
+            title: "desktop Fridge",
+            description: "Keep your beverage cold with this USB powered Minifridge.  Single can capacity - 24cu Inches.  Red plastic.",
+            category: "Appliances > Refridgerators, Freezers & Ice Makers",
+            price: 23.97,
+            rating: 3.4,
+            weight: 1.41,
+            image: "imgs/desktop-fridge.png"
+        },
+        roastBeefSandSalt = {
+            title: "Bath Salts: Roast Beef Sandwich",
+            description: "Amber bath salts: Luxury.  Best gifts for best friends, significant other.  Au jus french dip.",
+            category: "Bath & Bathing Accessories > Bath > Minerals & Salts",
+            price: 14.95,
+            rating: 4.7,
+            weight: 1.5,
+            image: "imgs/roast-beef-bath.png"
+        },
+        nicCagePillow = {
+            title: "Nicolas Cage Sequin Pillow",
+            description: "Get to sleep right next to Nic Cage every night!  Magic sequin pillow case and pillow from red to Nic Cage.",
+            category: "Bedding > Decorative Pillows, Inserts & Covers > Throw Pillows",
+            price: 18.99,
+            rating: 4.5,
+            weight: 1.5,
+            image: "imgs/nic-cage-pillow.png"
         }
         
     ]
@@ -129,17 +156,14 @@ function initializeGame () {
     //Step 1: Selecting a random product from the Array and DOM into page
     //random index generator
     randomProductIndex = Math.floor(Math.random() * products.length) 
-
     prodImgEl.src = products[randomProductIndex].image
-
     //Insert Product Title
     prodTitleEl.innerText = products[randomProductIndex].title
-
     //Insert Product Description
     prodDescEl.innerText = products[randomProductIndex].description
-
     //Insert Product Category
     prodCategoryEl.innerText= products[randomProductIndex].category
+
 
           
   //Activating the game button to start on price & Console logging the actual price of products for coding purposes DELETE when done
@@ -152,7 +176,17 @@ function initializeGame () {
     realWeight = products[randomProductIndex].weight
         console.log("This is the actual weight " + realWeight)
 
-    guessPriceButtonEl.addEventListener('click', userPriceGuess);
+        if(currentRound > 1) {
+        weightInputDiv.setAttribute("id", "weight-hidden");
+        guessWeightButtonEl.setAttribute("id", "weight-guess-button");
+        
+        }else if(currentRound > 3){
+            endGame();
+        }
+
+        priceInputDiv.removeAttribute("id");
+        guessPriceButtonEl.removeAttribute("id")
+        guessPriceButtonEl.addEventListener('click', userPriceGuess);
 
 
 
@@ -174,6 +208,7 @@ function initializeGame () {
 
         
 function userPriceGuess () {
+    
 
     userGuessPrice = guessPriceEl.value;
     realPrice = products[randomProductIndex].price;
@@ -307,8 +342,8 @@ function compPriceGuess (realPrice) {
 
 function userRatingGuess() {
     
-    priceInputDiv.setAttribute("style", "display: none;");
-    guessPriceButtonEl.setAttribute("style", "display: none;");
+    priceInputDiv.setAttribute("id", "price-hidden");
+    guessPriceButtonEl.setAttribute("id", "price-guess-button");
 
     ratingInputDiv.removeAttribute("id");
     guessRatingButtonEl.removeAttribute("id")
@@ -439,8 +474,8 @@ function compRatingGuess (realRating) {
 function userWeightGuess() {
     
 
-    ratingInputDiv.setAttribute("style", "display: none;");
-    guessRatingButtonEl.setAttribute("style", "display: none;");
+    ratingInputDiv.setAttribute("id", "rating-hidden");
+    guessRatingButtonEl.setAttribute("id", "rating-guess-button");
 
     weightInputDiv.removeAttribute("id");
     guessWeightButtonEl.removeAttribute("id")
@@ -573,11 +608,17 @@ function compWeightGuess(realWeight) {
 
 };//END of compGuessWeight Function
     
-    
-    function nextRound() {};
+
+function nextRound() {
+    currentRound++
+    initializeGame ();
+
+};
 
 
+function endGame (){};
     
+
     
     // let userRatingGuessPercent = (((realRating - userGuessRating) / realRating) * 100)
     

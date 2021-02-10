@@ -148,10 +148,8 @@ body {
 }
 
 #price-hidden {
-   
+   display: none;
 }
-
-
 
 .rating-input-div {
     border: 1px solid yellowgreen;
@@ -194,6 +192,10 @@ body {
 }
 
 /* //////BUTTONS///////// */
+
+#price-guess-button {
+    display: none;
+}
 
 #rating-guess-button {
     display: none;
