@@ -154,6 +154,7 @@ body {
     display:flex;
     justify-content: center;
     vertical-align: center;
+    display: none;
 }
 
 .weight-input-div {
@@ -162,6 +163,7 @@ body {
     display:flex;
     justify-content: center;
     vertical-align: center;
+    display: none;
   
 }
 
@@ -178,4 +180,14 @@ body {
     width: 4vw;
     height: auto;
     border: 1px solid magenta;
+}
+
+/* //////BUTTONS///////// */
+
+#rating-guess-button {
+    display: none;
+}
+
+#weight-guess-button {
+    display: none;
 }

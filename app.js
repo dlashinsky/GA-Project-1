@@ -1,5 +1,3 @@
-console.log("FIRE AWAY, IM READDDY TO GO!")
-
 
 // State Variables 
 
@@ -7,29 +5,29 @@ console.log("FIRE AWAY, IM READDDY TO GO!")
     let realPrice = null;
     let realrating = null;
     let realWeight = null;
-    let userGuessPrice = 0;
-    let userGuessrating = 0;
-    let userGuessWeight = 0;
+    let userGuessPrice = null;
+    let userGuessRating = null;
+    let userGuessWeight = null;
     let playerScore = 0;
-    let compGuessPrice = 0;
-    let compGuessrating = null;
+    let compGuessPrice = null;
+    let compGuessRating = null;
     let compGuessWeight = null;
     let computerScore = 0;
     let currentRound = 1;
-    let userGuessPercent = null;
+    // let userGuessPercent = null;
     let compGuessPercent = null;
     let randomProductIndex = null;
     
 
 
 // Point System (based on guesses)  Stored as Variables with Conditional Statements?
-//     guess value === real value ---> 55pts
-//     5% or less distance to real value ---> 35 pts
-//     > 5.1% || < 10% distance to real value ---> 20 pts
-//     > 10.1% || < 20% distance to real value ---> 10 pts
-//     > 20.1% || < 30% distance to real value ---> 5 pts
-//     > 30.1% || < 45% distance to real value ---> 1 pt
-//     < 45.1% distance to real value ---> 0pts
+    // guess value === real value ---> 55pts
+    // 5% or less distance to real value ---> 35 pts
+    // > 5.1% || < 10% distance to real value ---> 20 pts
+    // > 10.1% || < 20% distance to real value ---> 10 pts
+    // > 20.1% || < 30% distance to real value ---> 5 pts
+    // > 30.1% || < 45% distance to real value ---> 1 pt
+    // < 45.1% distance to real value ---> 0pts
 
 
 
@@ -45,7 +43,9 @@ console.log("FIRE AWAY, IM READDDY TO GO!")
     let guessPriceEl = document.querySelector("#guess-price-txt")
     let guessratingEl = document.querySelector("#guess-rating-txt")
     let guessWeightEl = document.querySelector("#guess-weight-txt")
-    let guessButtonEl = document.querySelector("#guess-button")    
+    let guessPriceButtonEl = document.querySelector("#price-guess-button")    
+    let guessRatingButtonEl = document.querySelector("#rating-guess-button")    
+    let guessWeightButtonEl = document.querySelector("#weight-guess-button")    
     let userWinEl = document.querySelector("#user-win-msg")
     let compWinEl = document.querySelector("comp-win-msg")
     
@@ -60,6 +60,51 @@ console.log("FIRE AWAY, IM READDDY TO GO!")
             rating: 4.7,
             weight: 14.2,
             image: "imgs/instant-pot.png"
+        // },
+        // instantPot2 = {
+        //     title: "Instant Pot Max",
+        //     description: "Pressure Cooker, 9 in 1 Best for Canning with 15PSI and serilizer, 6QT",
+        //     category: "Home & Kitchen",
+        //     price: 90,
+        //     rating: 2.6,
+        //     weight: 55,
+        //     image: "imgs/instant-pot.png"
+        // },
+        // instantPot2 = {
+        //     title: "Instant Pot Max",
+        //     description: "Pressure Cooker, 9 in 1 Best for Canning with 15PSI and serilizer, 6QT",
+        //     category: "Home & Kitchen",
+        //     price: 80,
+        //     rating: 3.7,
+        //     weight: 6,
+        //     image: "imgs/instant-pot.png"
+        // },
+        // instantPot2 = {
+        //     title: "Instant Pot Max",
+        //     description: "Pressure Cooker, 9 in 1 Best for Canning with 15PSI and serilizer, 6QT",
+        //     category: "Home & Kitchen",
+        //     price: 70,
+        //     rating: 4.1,
+        //     weight: 30,
+        //     image: "imgs/instant-pot.png"
+        // },
+        // instantPot2 = {
+        //     title: "Instant Pot Max",
+        //     description: "Pressure Cooker, 9 in 1 Best for Canning with 15PSI and serilizer, 6QT",
+        //     category: "Home & Kitchen",
+        //     price: 60,
+        //     rating: 4.4,
+        //     weight: 4,
+        //     image: "imgs/instant-pot.png"
+        // },
+        // instantPot2 = {
+        //     title: "Instant Pot Max",
+        //     description: "Pressure Cooker, 9 in 1 Best for Canning with 15PSI and serilizer, 6QT",
+        //     category: "Home & Kitchen",
+        //     price: 50,
+        //     rating: 4.1,
+        //     weight: 18,
+        //     image: "imgs/instant-pot.png"
         }
         
     ]
@@ -69,7 +114,6 @@ console.log("FIRE AWAY, IM READDDY TO GO!")
 
 // Event Listeners
     document.addEventListener('DOMContentLoaded', initializeGame)
-    guessButtonEl.addEventListener('click', loadUserValues)
     // Button on page that only becomes active after all three fields are satisfied
     // Price Guess Input Text Field 
     // Rating Guess Input Text Field
@@ -78,98 +122,239 @@ console.log("FIRE AWAY, IM READDDY TO GO!")
 
 
 // Game Initialization 
-    function initializeGame () {
-   //Step 1: Selecting a random product from the Array and DOM into page
+function initializeGame () {
+    //Step 1: Selecting a random product from the Array and DOM into page
+    //random index generator
+    randomProductIndex = Math.floor(Math.random() * products.length) 
 
-        //random index generator
-            randomProductIndex = Math.floor(Math.random() * products.length) 
+    prodImgEl.src = products[randomProductIndex].image
+
+    //Insert Product Title
+    prodTitleEl.innerText = products[randomProductIndex].title
+
+    //Insert Product Description
+    prodDescEl.innerText = products[randomProductIndex].description
+
+    //Insert Product Category
+    prodCategoryEl.innerText= products[randomProductIndex].category
+
+          
+  //Activating the game button to start on price 
+
+   realPrice = products[randomProductIndex].price;
+        console.log(`The real price is ${realPrice}`)
+   realRating = products[randomProductIndex].rating;
+        console.log(`The real rating is ${realRating}`)
+   realWeight = products[randomProductIndex].weight;
+        console.log(`The real weight is ${realWeight}`)
 
 
-        // DOM insert into page
-            //Replace/Insert product image
-                prodImgEl.src = products[randomProductIndex].image
+    guessPriceButtonEl.addEventListener('click', evaluateAnswers);
 
-            //Insert Product Title
-                prodTitleEl.innerText = products[randomProductIndex].title
-
-            //Insert Product Description
-                prodDescEl.innerText = products[randomProductIndex].description
-
-            //Insert Product Category
-                prodCategoryEl.innerText= products[randomProductIndex].category
-
-       
             
-            // Step 2: 
-            // Inputting all the data from the product (eg. Price, etc) into state variables.  
+    // Step 3: 
+    // Inputting the game score values onto the page. 
+    computerScoreEl.innerText = computerScore
+    playerScoreEl.innerText = playerScore
             
-            realPrice = products[randomProductIndex].price
-            realRating= products[randomProductIndex].rating
-            realWeight = products[randomProductIndex].weight
-
-            console.log(realPrice)
-            console.log(realRating)
-            console.log(realWeight)
+    //Step 4: Inputting what game round it is (Further rounds strech goal)
+    gameRoundEl.innerText = currentRound
             
-            
-            // Step 3: 
-            // Inputting the game score values onto the page.  (and for strech goal the current round)
-            
-            computerScoreEl.innerText = computerScore.value
-            playerScoreEl.innerText = playerScore.value
-            
-            //Step 4: Inputting what game round it is (Further rounds strech goal)
-            gameRoundEl.innerText = currentRound
-            
-        };
+};
         
-        function loadUserValues () {
 
-            userGuessPrice = guessPriceEl.value;
-            userGuessrating = guessratingEl.value;
-            userGuessWeight = guessWeightEl.value;
+function evaluateAnswers (realPrice, realRating, realWeight) {
 
-            console.log(userGuessPrice);
-            console.log(userGuessrating);
-            console.log(userGuessWeight)
+///////////PLAYER GUESSING ON PRICE////////////////
 
-        }
-                
-// Guess Callback function 
-//     Event listeners on the "play" button
+userGuessPrice = guessPriceEl.value;
+realPrice = products[randomProductIndex].price;
+console.log("This is the second " + realPrice)
+
+let userPriceGuessPercent = Math.floor((((realPrice - userGuessPrice) / realPrice) * 100))
+
+console.log(userPriceGuessPercent)
 
 
-//     check user guess vs. real values and run Evaluate function
-//     Randomizes computer's guess for the values 
-    
-    
+///////CONDITIONALS FOR HOW CLOSE THE USER GETS TO THE ANSWER//////////
 
-function evaluateAnswers () {
-// Evaluate Entry Function
-//     Calculations based on Textfield.Values & Computer Generated Values
-//     Evaluate Guess Value and Computer Random Value based on the mathematical distance between the guessed value 
-//         and real value of the variable in question. 
-
-    // Award computer and user points based on that distance, with more points awarded being closer to the realValue, and less points
-    //     being awarded further away from the realValue.  Based on a teir system of percentages with conditional statements
-            
-    userGuessPercent = (((realPrice - userGuessPrice.value) / realPrice) * 100)  
-        if (userGuessPercent <= 5) {
-                playerScore =+ 35
-                playerScoreEl.innerText(playerScore.Value)
-                checkWin();
-                //(strech goal)run nextRound Function 
-        }
-    
-    compGuessPercent = (((realPrice - compGuessPrice.value) / realPrice) * 100)  
-        if (compGuessPercent <= 5) {
-                computerScore =+ 35
-                computerScoreEl.innerText(computerScore.Value)
-                checkWin();
-                //(strech goal)run nextRound Function 
-            }
-        
+if(userGuessPrice > realPrice) {
+    console.log("You over bid!  Negative Points!!!")
+    playerScore -=20;
+    playerScoreEl.innerText = playerScore;
+    runCompGuess(realPrice);
+    // evaluateRating();
 }
+if (userPriceGuessPercent >.001  &&  userPriceGuessPercent <= 5) {
+    playerScore += 35;
+    playerScoreEl.innerText = playerScore;
+    console.log("the 35pt conditional is working")
+    runCompGuess(realPrice);
+    runCompGuess(realPrice);
+}
+
+if (userPriceGuessPercent >5  &&  userPriceGuessPercent <= 10) {
+    playerScore += 20;
+    console.log("the 20pt conditional is working")
+    playerScoreEl.innerText = playerScore;
+    runCompGuess(realPrice);
+    // evaluateRating();
+}
+if (userPriceGuessPercent >10  &&  userPriceGuessPercent <= 20) {
+    playerScore += 10;
+    console.log("the 10pt conditional is working");
+    playerScoreEl.innerText = playerScore;
+    runCompGuess(realPrice); 
+    // evaluateRating();
+}
+if (userPriceGuessPercent >20  &&  userPriceGuessPercent <= 30) {
+    playerScore += 5;
+    console.log("the 5pt conditional is working");
+    playerScoreEl.innerText = playerScore;
+    runCompGuess(realPrice);
+    // evaluateRating();
+}
+if (userPriceGuessPercent >30  &&  userPriceGuessPercent <= 45) {
+    playerScore += 1;
+    console.log("the 1 pt conditional is working");
+    playerScoreEl.innerText = playerScore; 
+    runCompGuess(realPrice);
+    // evaluateRating();
+}
+if (userPriceGuessPercent > 45) {
+    playerScore += 0;
+    console.log("the 0 pt conditional is working");
+    playerScoreEl.innerText = playerScore;
+    runCompGuess(realPrice); 
+    // evaluateRating();
+
+}
+
+    else if (userGuessPrice == realPrice) {
+        playerScore += 55;
+        console.log("the 55pt conditional is working")
+        playerScoreEl.innerText = playerScore;
+        runCompGuess(realPrice);
+        // evaluateRating();
+    }
+
+
+////////////CONDITIONALS ON COMPUTER GUESS, AND RANDOMIZATION OF COMPUTER GUESS////////////
+
+function runCompGuess (realPrice) {
+
+let adjustedRealPrice =  realPrice * 1.10
+console.log("The adjusted Real Price is " + adjustedRealPrice)
+
+    compGuessPrice = Math.floor(Math.random() * (adjustedRealPrice/2)) + (realPrice / 2)
+        console.log("the computer guessed " + compGuessPrice)
+        
+        
+let compPriceGuessPercent = Math.floor((((realPrice - compGuessPrice) / realPrice) * 100))
+    console.log("The computer price guess is " + compPriceGuessPercent + " percent.")
+
+
+}
+
+
+if(userGuessPrice > realPrice) {
+    console.log("You over bid!  Negative Points!!!")
+    playerScore -=20
+    playerScoreEl.innerText = playerScore
+    // evaluateRating();
+}
+if (userPriceGuessPercent >.001  &&  userPriceGuessPercent <= 5) {
+    playerScore += 35
+    playerScoreEl.innerText = playerScore 
+    console.log("the 20pt conditional is working")
+    // evaluateRating();
+}
+
+if (userPriceGuessPercent >5  &&  userPriceGuessPercent <= 10) {
+    playerScore += 20
+    console.log("the 20pt conditional is working")
+    playerScoreEl.innerText = playerScore 
+    // evaluateRating();
+}
+if (userPriceGuessPercent >10  &&  userPriceGuessPercent <= 20) {
+    playerScore += 10
+    console.log("the 10pt conditional is working")
+    playerScoreEl.innerText = playerScore 
+    // evaluateRating();
+}
+if (userPriceGuessPercent >20  &&  userPriceGuessPercent <= 30) {
+    playerScore += 5
+    console.log("the 5pt conditional is working")
+    playerScoreEl.innerText = playerScore 
+    // evaluateRating();
+}
+if (userPriceGuessPercent >30  &&  userPriceGuessPercent <= 45) {
+    playerScore += 1
+    console.log("the 1 pt conditional is working")
+    playerScoreEl.innerText = playerScore 
+    // evaluateRating();
+}
+if (userPriceGuessPercent > 45) {
+    playerScore += 0
+    console.log("the 0 pt conditional is working")
+    playerScoreEl.innerText = playerScore 
+    // evaluateRating();
+
+}
+
+    else if (userGuessPrice == realPrice) {
+        playerScore += 55
+        console.log("the 55pt conditional is working")
+        playerScoreEl.innerText = playerScore 
+        // evaluateRating();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        function evaluateRating() {
+            userGuessRating = guessratingEl.value;
+
+        }
+        
+        userGuessWeight = guessWeightEl.value;
+        let userRatingGuessPercent = (((realRating - userGuessRating) / realRating) * 100)
+        let userWeightGuessPercent = (((realWeight - userGuessWeight) / realWeight) * 100)
+
+
+
+
+
+}
+
+
+
+
+
+    // compGuessPercent = (((realPrice - compGuessPrice.value) / realPrice) * 100)  
+    //     if (compGuessPercent <= 5) {
+    //             computerScore =+ 35
+    //             computerScoreEl.innerText(computerScore.Value)
+    //             checkWin();
+    //             //(strech goal)run nextRound Function 
+    //         }
+        
         
 
 // checkWin function 
