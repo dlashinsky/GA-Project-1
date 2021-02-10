@@ -147,6 +147,11 @@ body {
 
 }
 
+#price-hidden {
+   
+}
+
+
 
 .rating-input-div {
     border: 1px solid yellowgreen;
@@ -154,8 +159,12 @@ body {
     display:flex;
     justify-content: center;
     vertical-align: center;
+}
+
+#rating-hidden {
     display: none;
 }
+
 
 .weight-input-div {
     border: 1px solid yellowgreen;
@@ -163,8 +172,10 @@ body {
     display:flex;
     justify-content: center;
     vertical-align: center;
+}
+
+#weight-hidden {
     display: none;
-  
 }
 
 
