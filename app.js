@@ -1,171 +1,212 @@
 
+var test;
+
+
+function preload() {
+
+test = loadSound("music/background.mp3")
+}
+
+
+
+
+
+
+
 // State Variables 
 
 
-    let realPrice = null;
-    let realrating = null;
-    let realWeight = null;
-    let userGuessPrice = null;
-    let userGuessRating = null;
-    let userGuessWeight = null;
-    let playerScore = 0;
-    let compGuessPrice = null;
-    let compGuessRating = null;
-    let compGuessWeight = null;
-    let computerScore = 0;
-    let currentRound = 1;
-    // let userGuessPercent = null;
-    let compGuessPercent = null;
-    let randomProductIndex = null;
-    let displayMessageComp = null;
-    let displayMessageUser = null;
-    
+let realPrice = null;
+let realrating = null;
+let realWeight = null;
+let userGuessPrice = null;
+let userGuessRating = null;
+let userGuessWeight = null;
+let playerScore = 0;
+let compGuessPrice = null;
+let compGuessRating = null;
+let compGuessWeight = null;
+let computerScore = 0;
+let currentRound = 1;
+// let userGuessPercent = null;
+let compGuessPercent = null;
+let randomProductIndex = null;
+let displayMessageComp = null;
+let displayMessageUser = null;
+
+
 
 
 // Point System (based on guesses)  Written as Conditional Statements
-    // guess value === real value ---> 55pts
-    // 5% or less distance to real value ---> 35 pts
-    // > 5.1% || < 10% distance to real value ---> 20 pts
-    // > 10.1% || < 20% distance to real value ---> 10 pts
-    // > 20.1% || < 30% distance to real value ---> 5 pts
-    // > 30.1% || < 45% distance to real value ---> 1 pt
-    // < 45.1% distance to real value ---> 0pts
+// guess value === real value ---> 55pts
+// 5% or less distance to real value ---> 35 pts
+// > 5.1% || < 10% distance to real value ---> 20 pts
+// > 10.1% || < 20% distance to real value ---> 10 pts
+// > 20.1% || < 30% distance to real value ---> 5 pts
+// > 30.1% || < 45% distance to real value ---> 1 pt
+// < 45.1% distance to real value ---> 0pts
 
 
 
 
 // DOM Variables
-    const prodImgEl = document.querySelector("#prod-img");
-    const prodTitleEl = document.querySelector(".prod-title");
-    const prodDescEl = document.querySelector(".prod-description");
-    const prodCategoryEl = document.querySelector(".prod-category")
-    const computerScoreEl = document.querySelector("#comp-score")
-    const playerScoreEl = document.querySelector("#player-score")
-    const gameRoundEl = document.querySelector("#game-round")
-    const guessPriceEl = document.querySelector("#guess-price-txt")
-    const guessRatingEl = document.querySelector("#guess-rating-txt")
-    const guessWeightEl = document.querySelector("#guess-weight-txt")
-    const priceInputDiv = document.querySelector(".price-input-div")    
-    const guessPriceButtonEl = document.querySelector("#price-guess-button")
-    const ratingInputDiv = document.querySelector(".rating-input-div")
-    const guessRatingButtonEl = document.querySelector("#rating-guess-button")    
-    const guessWeightButtonEl = document.querySelector("#weight-guess-button") 
-    const weightInputDiv = document.querySelector(".weight-input-div")   
-    const userWinEl = document.querySelector("#user-win-msg")
-    const compWinEl = document.querySelector("comp-win-msg")
-    const resetButtonEl = document.querySelector(".reset-btn")
-    
-    //////Modal DOMs///// 
-        const modalDivEl = document.querySelector("#myModal")
-        const modalSpan = document.querySelector(".close")
-        const modalUserScore =document.querySelector("#modal-user-score")
-        const modalCompScore =document.querySelector("#modal-comp-score")
-        const modalActualValue =document.querySelector("#modal-actual-value")
-        const modalUserGuess =document.querySelector("#modal-user-guess")
-        const modalCompGuess =document.querySelector("#modal-comp-guess")
-        const modalNextRound =document.querySelector("#modal-next-round")
-        const modalCloseBtn = document.querySelector(".close-btn")
+const prodImgEl = document.querySelector("#prod-img");
+const prodTitleEl = document.querySelector(".prod-title");
+const prodDescEl = document.querySelector(".prod-description");
+const prodCategoryEl = document.querySelector(".prod-category")
+const computerScoreEl = document.querySelector("#comp-score")
+const playerScoreEl = document.querySelector("#player-score")
+const gameRoundEl = document.querySelector("#game-round")
+const guessPriceEl = document.querySelector("#guess-price-txt")
+const guessRatingEl = document.querySelector("#guess-rating-txt")
+const guessWeightEl = document.querySelector("#guess-weight-txt")
+const priceInputDiv = document.querySelector(".price-input-div")    
+const guessPriceButtonEl = document.querySelector("#price-guess-button")
+const ratingInputDiv = document.querySelector(".rating-input-div")
+const guessRatingButtonEl = document.querySelector("#rating-guess-button")    
+const guessWeightButtonEl = document.querySelector("#weight-guess-button") 
+const weightInputDiv = document.querySelector(".weight-input-div")   
+const userWinEl = document.querySelector("#user-win-msg")
+const compWinEl = document.querySelector("comp-win-msg")
+const resetButtonEl = document.querySelector(".reset-btn")
+const documentBody = document.querySelector(".body")
+
+documentBody.addEventListener("click", eventFunction)
+   
+    function eventFunction (event) {
+        console.dir(event)
+        console.log(event)
+    }
+
+//////Modal DOMs///// 
+const modalDivEl = document.querySelector("#myModal")
+const modalSpan = document.querySelector(".close")
+const modalUserScore =document.querySelector("#modal-user-score")
+const modalCompScore =document.querySelector("#modal-comp-score")
+const modalActualValue =document.querySelector("#modal-actual-value")
+const modalUserGuess =document.querySelector("#modal-user-guess")
+const modalCompGuess =document.querySelector("#modal-comp-guess")
+const modalNextRound =document.querySelector("#modal-next-round")
+const modalCloseBtn = document.querySelector(".close-btn")
 
 
-    
-    
+
+
 // Product Array
-    const products = [
-        instantPot = {
-            title: "Instant Pot Max",
-            description: "Pressure Cooker, 9 in 1 Best for Canning with 15PSI and serilizer, 6QT",
-            category: "Home & Kitchen",
-            price: 99.99,
-            rating: 4.7,
-            weight: 14.2,
-            image: "imgs/instant-pot.png"
-        },
-        seniorWallDecal = {
-            title: "Wall Monkey Decal: Senior Woman with Asthma",
-            description: "Hang anywhere in your house!  Wall paint-safe; 48in x 41in decal; senior woman with asthma",
-            category: "Appliances > Refridgerators, Freezers & Ice Makers",
-            price: 49.99,
-            rating: 5,
-            weight: 1.5,
-            image: "imgs/senior-wall-decal.png"
-        },
-        fingerPuppets = {
-            title: "Tiny Hand Finger Puppets",
-            description: "Pack of 12, instead of the usual 10!  Halloween hand prop accessories; dishwasher safe",
-            category: "Toys & Games",
-            price: 10.97,
-            rating: 4.7,
-            weight: .25,
-            image: "imgs/tinyhands.png"
-        },
-        catTissueHolder = {
-            title: "Catt Butt Tissue Holder",
-            description: "Orange Tabby Cat. Fits square tissue box. Made from molded resin. Microwave Safe",
-            category: "Home & Kitchen > Bath > Bathroom Accessories > Holders & Dispensers > Tissue Holders",
-            price: 39.95,
-            rating: 4.7,
-            weight: 30,
-            image: "imgs/cat-tissue-holder.png"
-        },
-        karaokeHorn = {
-            title: "Karaoke Horn",
-            description: "Take your voice where ever you go! Ultra Heat safe silicone up to 550F, for the HOT voices out there.  Machine wash cold; tumble dry",
-            category: "None",
-            price: 69.36,
-            rating: 3.5,
-            weight: .58,
-            image: "imgs/karaoke-horn.png"
-        },
-        fingerCovers = {
-            title: "Finger Covers",
-            description: "Keep your fingers CLEAN with these finger food covers.  Enjoy your cheetos with peace.  3ct, red.  Washable, reusable, dishwasher safe.",
-            category: "Home & Kitchen > Kitchen & Dining > Kitchen Utensils & Gadgets",
-            price: 18.99,
-            rating: 4.4,
-            weight: .4,
-            image: "imgs/finger-covers.png"
-        },
-        desktopFridge = {
-            title: "Desktop Fridge",
-            description: "Keep your beverage cold with this USB powered Minifridge.  Single can capacity - 24cu Inches.  Red plastic.",
-            category: "Appliances > Refridgerators, Freezers & Ice Makers",
-            price: 23.97,
-            rating: 3.4,
-            weight: 1.41,
-            image: "imgs/desktop-fridge.png"
-        },
-        roastBeefSandSalt = {
-            title: "Bath Salts: Roast Beef Sandwich",
-            description: "Amber bath salts: Luxury.  Best gifts for best friends, significant other.  Au jus french dip.",
-            category: "Bath & Bathing Accessories > Bath > Minerals & Salts",
-            price: 14.95,
-            rating: 4.7,
-            weight: 1.5,
-            image: "imgs/roast-beef-bath.png"
-        },
-        nicCagePillow = {
-            title: "Nicolas Cage Sequin Pillow",
-            description: "Get to sleep right next to Nic Cage every night!  Magic sequin pillow case and pillow from red to Nic Cage.",
-            category: "Bedding > Decorative Pillows, Inserts & Covers > Throw Pillows",
-            price: 18.99,
-            rating: 4.5,
-            weight: 1.5,
-            image: "imgs/nic-cage-pillow.png"
-        }
+const products = [
+    instantPot = {
+        title: "Instant Pot Max",
+        description: "Pressure Cooker, 9 in 1 Best for Canning with 15PSI and serilizer, 6QT",
+        category: "Home & Kitchen",
+        price: 99.99,
+        rating: 4.7,
+        weight: 14.2,
+        image: "imgs/instant-pot.png"
+    },
+    seniorWallDecal = {
+        title: "Wall Monkey Decal: Senior Woman with Asthma",
+        description: "Hang anywhere in your house!  Wall paint-safe; 48in x 41in decal; senior woman with asthma",
+        category: "Appliances > Refridgerators, Freezers & Ice Makers",
+        price: 49.99,
+        rating: 5,
+        weight: 1.5,
+        image: "imgs/senior-wall-decal.png"
+    },
+    fingerPuppets = {
+        title: "Tiny Hand Finger Puppets",
+        description: "Pack of 12, instead of the usual 10!  Halloween hand prop accessories; dishwasher safe",
+        category: "Toys & Games",
+        price: 10.97,
+        rating: 4.7,
+        weight: .25,
+        image: "imgs/tinyhands.png"
+    },
+    catTissueHolder = {
+        title: "Catt Butt Tissue Holder",
+        description: "Orange Tabby Cat. Fits square tissue box. Made from molded resin. Microwave Safe",
+        category: "Home & Kitchen > Bath > Bathroom Accessories > Holders & Dispensers > Tissue Holders",
+        price: 39.95,
+        rating: 4.7,
+        weight: 30,
+        image: "imgs/cat-tissue-holder.png"
+    },
+    karaokeHorn = {
+        title: "Karaoke Horn",
+        description: "Take your voice where ever you go! Ultra Heat safe silicone up to 550F, for the HOT voices out there.  Machine wash cold; tumble dry",
+        category: "None",
+        price: 69.36,
+        rating: 3.5,
+        weight: .58,
+        image: "imgs/karaoke-horn.png"
+    },
+    fingerCovers = {
+        title: "Finger Covers",
+        description: "Keep your fingers CLEAN with these finger food covers.  Enjoy your cheetos with peace.  3ct, red.  Washable, reusable, dishwasher safe.",
+        category: "Home & Kitchen > Kitchen & Dining > Kitchen Utensils & Gadgets",
+        price: 18.99,
+        rating: 4.4,
+        weight: .4,
+        image: "imgs/finger-covers.png"
+    },
+    desktopFridge = {
+        title: "Desktop Fridge",
+        description: "Keep your beverage cold with this USB powered Minifridge.  Single can capacity - 24cu Inches.  Red plastic.",
+        category: "Appliances > Refridgerators, Freezers & Ice Makers",
+        price: 23.97,
+        rating: 3.4,
+        weight: 1.41,
+        image: "imgs/desktop-fridge.png"
+    },
+    roastBeefSandSalt = {
+        title: "Bath Salts: Roast Beef Sandwich",
+        description: "Amber bath salts: Luxury.  Best gifts for best friends, significant other.  Au jus french dip.",
+        category: "Bath & Bathing Accessories > Bath > Minerals & Salts",
+        price: 14.95,
+        rating: 4.7,
+        weight: 1.5,
+        image: "imgs/roast-beef-bath.png"
+    },
+    nicCagePillow = {
+        title: "Nicolas Cage Sequin Pillow",
+        description: "Get to sleep right next to Nic Cage every night!  Magic sequin pillow case and pillow from red to Nic Cage.",
+        category: "Bedding > Decorative Pillows, Inserts & Covers > Throw Pillows",
+        price: 18.99,
+        rating: 4.5,
+        weight: 1.5,
+        image: "imgs/nic-cage-pillow.png"
+    }
+    
+
+
+]
+////NOTE:  Should create a class for the new product Objects///////
+
+    // class product {
+    //     constructor(title, description, category, price, rating, weight, image) {
+    //         this.title = title;
+    //         this.description = description;
+    //         this.category = category;
+    //         this.price = price;
+    //         this.rating = rating;
+    //         this.weight = weight;
+    //         this.image = image;
+    //     }
+
+    // }
+    // let baconBandageStrips = new product ("Bacon Bandage Strips", "Ouch! That smarts! Treat your minor cuts, scrapes and scratches with the incredible healing power of meat."
         
-    ]
-    ////NOTE:  Should create a class for the new product Objects///////
-    
-    
+
 
 // Event Listeners
-    document.addEventListener('DOMContentLoaded', initializeGame);
-    resetButtonEl.addEventListener('click', resetGame);
 
-    // Button on page that only becomes active after all three fields are satisfied
-    // Price Guess Input Text Field 
-    // Rating Guess Input Text Field
-    // Weight Guess Input Text Field
+document.addEventListener('DOMContentLoaded', initializeGame);
+resetButtonEl.addEventListener('click', resetGame);
+// test = loadSound("music/background.mp3")
+
+// Button on page that only becomes active after all three fields are satisfied
+// Price Guess Input Text Field 
+// Rating Guess Input Text Field
+// Weight Guess Input Text Field
 
 
 
@@ -181,26 +222,28 @@ function initializeGame () {
     prodDescEl.innerText = products[randomProductIndex].description
     //Insert Product Category
     prodCategoryEl.innerText= products[randomProductIndex].category
-
+    //Background music
+    // backgroundMusic = new sound("music/game-background-music.mp3")
+    //     backgroundMusic.play();
 
           
   //Activating the game button to start on price & Console logging the actual price of products for coding purposes DELETE when done
 
   
     realPrice = products[randomProductIndex].price;
-        console.log("This is the actual price " + realPrice)
+    console.log("This is the actual price " + realPrice)
     realRating = products[randomProductIndex].rating
-        console.log("This is the actual rating " + realRating)
+    console.log("This is the actual rating " + realRating)
     realWeight = products[randomProductIndex].weight
-        console.log("This is the actual weight " + realWeight)
+    console.log("This is the actual weight " + realWeight)
 
        
-        weightInputDiv.setAttribute("id", "weight-hidden");
-        guessWeightButtonEl.setAttribute("id", "weight-guess-button");
-        
-        priceInputDiv.removeAttribute("id");
-        guessPriceButtonEl.removeAttribute("id");
-        guessPriceButtonEl.addEventListener('click', userPriceGuess);
+    weightInputDiv.setAttribute("id", "weight-hidden");
+    guessWeightButtonEl.setAttribute("id", "weight-guess-button");
+    
+    priceInputDiv.removeAttribute("id");
+    guessPriceButtonEl.removeAttribute("id");
+    guessPriceButtonEl.addEventListener('click', userPriceGuess);
         
 
     // Step 3: 
@@ -419,13 +462,12 @@ guessRatingButtonEl.addEventListener('click', () => {
         playerScoreEl.innerText = playerScore;
         compRatingGuess(realRating, displayMessageUser); 
     }
-        else if (userGuessRating == realRating) {
-            playerScore += 35;
-                displayMessageUser = "Your rating guess was " + userGuessRating + "/5. Nice!! You got 35 points!"
-                playerScoreEl.innerText = playerScore;
-                compRatingGuess(realRating, displayMessageUser);
-            }
-        
+    else if (userGuessRating == realRating) {
+        playerScore += 35;
+        displayMessageUser = "Your rating guess was " + userGuessRating + "/5. Nice!! You got 35 points!"
+        playerScoreEl.innerText = playerScore;
+        compRatingGuess(realRating, displayMessageUser);
+    }
 })/// End Button click Callback func
         
         
@@ -527,64 +569,64 @@ function userWeightGuess() {
     weightInputDiv.removeAttribute("id");
     guessWeightButtonEl.removeAttribute("id")
     
-        guessWeightButtonEl.addEventListener('click', () => {
+    guessWeightButtonEl.addEventListener('click', () => {
 
-            userGuessWeight = guessWeightEl.value;
-            realWeight = products[randomProductIndex].weight;
-    
-            let userWeightGuessPercent = (((realWeight - userGuessWeight) / realWeight) * 100)
+        userGuessWeight = guessWeightEl.value;
+        realWeight = products[randomProductIndex].weight;
 
-            if(userGuessWeight > realWeight) {
-                displayMessageUser = "You over guessed the Weight!  Negative Points!!!"
-                playerScore -=20;
-                playerScoreEl.innerText = playerScore;
-                compWeightGuess(realWeight, displayMessageUser);
-            }
-            if (userWeightGuessPercent >.001  &&  userWeightGuessPercent <= 5) {
-                playerScore += 35;
-                playerScoreEl.innerText = playerScore;
-                displayMessageUser = "Your weight guess was " + userGuessWeight + "lbs. You got 35 points!"
-                compWeightGuess(realWeight, displayMessageUser);
-            }
-            if (userWeightGuessPercent >5  &&  userWeightGuessPercent <= 10) {
-                playerScore += 20;
-                displayMessageUser = "Your weight guess was " + userGuessWeight + "lbs. You got 20 points!"
-                playerScoreEl.innerText = playerScore;
-                compWeightGuess(realWeight, displayMessageUser);
-            }
-            if (userWeightGuessPercent >10  &&  userWeightGuessPercent <= 20) {
-                playerScore += 10;
-                displayMessageUser = "Your weight guess was " + userGuessWeight + "lbs. You got 10 points!"
-                playerScoreEl.innerText = playerScore;
-                compWeightGuess(realWeight, displayMessageUser); 
-            }
-            if (userWeightGuessPercent >20  &&  userWeightGuessPercent <= 30) {
-                playerScore += 5;
-                displayMessageUser = "Your weight guess was " + userGuessWeight + "lbs. You got 5 points!"
-                playerScoreEl.innerText = playerScore;
-                compWeightGuess(realWeight, displayMessageUser);
-            }
-            if (userWeightGuessPercent >30  &&  userWeightGuessPercent <= 45) {
-                playerScore += 1;
-                displayMessageUser = "Your weight guess was " + userGuessWeight + "lbs. You got 1 point!"
-                playerScoreEl.innerText = playerScore; 
-                compWeightGuess(realWeight, displayMessageUser);
-            }
-            if (userWeightGuessPercent > 45) {
-                playerScore += 0;
-                displayMessageUser = "Your weight guess was " + userGuessWeight + "lbs. I award you 0 points."
-                playerScoreEl.innerText = playerScore;
-                compWeightGuess(realWeight, displayMessageUser); 
-            }
-                else if (userGuessWeight == realWeight) {
-                    playerScore += 55;
-                    displayMessageUser = "Your weight guess was spot on at" + userGuessWeight + "lbs.  Nice work!!! you got 55 points!!!"
-                    playerScoreEl.innerText = playerScore;
-                    compWeightGuess(realWeight, displayMessageUser);
-                }
+        let userWeightGuessPercent = (((realWeight - userGuessWeight) / realWeight) * 100)
+
+        if(userGuessWeight > realWeight) {
+            displayMessageUser = "You over guessed the Weight!  Negative Points!!!"
+            playerScore -=20;
+            playerScoreEl.innerText = playerScore;
+            compWeightGuess(realWeight, displayMessageUser);
+        }
+        if (userWeightGuessPercent >.001  &&  userWeightGuessPercent <= 5) {
+            playerScore += 35;
+            playerScoreEl.innerText = playerScore;
+            displayMessageUser = "Your weight guess was " + userGuessWeight + "lbs. You got 35 points!"
+            compWeightGuess(realWeight, displayMessageUser);
+        }
+        if (userWeightGuessPercent >5  &&  userWeightGuessPercent <= 10) {
+            playerScore += 20;
+            displayMessageUser = "Your weight guess was " + userGuessWeight + "lbs. You got 20 points!"
+            playerScoreEl.innerText = playerScore;
+            compWeightGuess(realWeight, displayMessageUser);
+        }
+        if (userWeightGuessPercent >10  &&  userWeightGuessPercent <= 20) {
+            playerScore += 10;
+            displayMessageUser = "Your weight guess was " + userGuessWeight + "lbs. You got 10 points!"
+            playerScoreEl.innerText = playerScore;
+            compWeightGuess(realWeight, displayMessageUser); 
+        }
+        if (userWeightGuessPercent >20  &&  userWeightGuessPercent <= 30) {
+            playerScore += 5;
+            displayMessageUser = "Your weight guess was " + userGuessWeight + "lbs. You got 5 points!"
+            playerScoreEl.innerText = playerScore;
+            compWeightGuess(realWeight, displayMessageUser);
+        }
+        if (userWeightGuessPercent >30  &&  userWeightGuessPercent <= 45) {
+            playerScore += 1;
+            displayMessageUser = "Your weight guess was " + userGuessWeight + "lbs. You got 1 point!"
+            playerScoreEl.innerText = playerScore; 
+            compWeightGuess(realWeight, displayMessageUser);
+        }
+        if (userWeightGuessPercent > 45) {
+            playerScore += 0;
+            displayMessageUser = "Your weight guess was " + userGuessWeight + "lbs. I award you 0 points."
+            playerScoreEl.innerText = playerScore;
+            compWeightGuess(realWeight, displayMessageUser); 
+        }
+        else if (userGuessWeight == realWeight) {
+            playerScore += 55;
+            displayMessageUser = "Your weight guess was spot on at" + userGuessWeight + "lbs.  Nice work!!! you got 55 points!!!"
+            playerScoreEl.innerText = playerScore;
+            compWeightGuess(realWeight, displayMessageUser);
+        }
 
 
-        });/////END Weight guess button Click Call back Function 
+    });/////END Weight guess button Click Call back Function 
 
 
 
