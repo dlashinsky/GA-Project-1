@@ -8,45 +8,56 @@
 </head>
 <body>
     <div class = main-container>
-        <div class = sub-container-left>
 
-            <div class = product-window> 
+    <div class = left-mid-divs-container>
+            <div class = sub-container-left>
 
-                <div class= prod-title> Product Title Goes here</div>
-                <div class= prod-description> Product Description Goes here</div>
-                <div class= prod-photo-div>
-                  
-                    <img id= prod-img alt="image not found">
+                <div class = product-window> 
+
+                    <div class = title-text>Product:</div>
+                    <div class= prod-title> Product Title Goes here</div>
+                    <div class= desc-text>Description</div>
+                    <div class= prod-description> Product Description Goes here</div>
+                    <div class= prod-photo-div>
                     
+                        <img id= prod-img alt="image not found">
+                        
+                    </div>
+
                 </div>
 
             </div>
 
-        </div>
-
-        <div class = sub-container-mid>
-
-            <div class = GS-comp-score-div> Computer Score
+            <div class = sub-container-mid>
                 
-                <div class= GS-values id= comp-score>45</div>
+                <div class = current-round-div> Round
 
+                    <div class = GS-values id= game-round></div>
+
+                </div>
+
+                <div class = GS-comp-score-div> Computer Score
+                    
+                    <div class= GS-values id= comp-score>45</div>
+
+                </div>
+
+                <div class = GS-player-score-div> Your Score
+                    
+                    <div class = GS-values id= player-score>45</div>
+
+                </div>
+                    
+                <div class = category-text>Amazon Category</div>
+                <div class= prod-category>Category Goes Here</div> 
+
+                <button class = reset-btn> RESET GAME</button>
+                
+                
             </div>
 
-            <div class = GS-player-score-div> Your Score
-                
-                <div class = GS-values id= player-score>45</div>
+    </div>
 
-            </div>
-                
-            <div class = current-round-div> Round
-
-                <div class = GS-values id= game-round></div>
-
-            </div>
-
-            <div class= prod-category>Category Goes Here</div> 
-
-        </div>
 
         <div class = sub-container-right>
 
@@ -62,6 +73,21 @@
                     
                   
                 </div>
+
+                <div id="myModal" class="modal">
+
+                    <!-- Modal content -->
+                    <div class="modal-content">
+                        <h2 id = modal-user-score></h2>
+                        <h2 id = modal-comp-score></h2>
+                        <h3 id = modal-actual-value></h3>
+                        <h3 id = modal-user-guess></h3>
+                        <h3 id = modal-comp-guess></h3>
+                        <h3 id = modal-next-round></h3>
+                        <span class="close"><button class = "close-btn"></button></span>
+                    </div>
+                  
+                  </div>
 
                 
                 <div class = rating-input-div id = "rating-hidden"> 

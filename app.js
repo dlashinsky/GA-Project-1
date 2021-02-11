@@ -17,6 +17,8 @@
     // let userGuessPercent = null;
     let compGuessPercent = null;
     let randomProductIndex = null;
+    let displayMessageComp = null;
+    let displayMessageUser = null;
     
 
 
@@ -33,24 +35,38 @@
 
 
 // DOM Variables
-    let prodImgEl = document.querySelector("#prod-img");
-    let prodTitleEl = document.querySelector(".prod-title");
-    let prodDescEl = document.querySelector(".prod-description");
-    let prodCategoryEl = document.querySelector(".prod-category")
-    let computerScoreEl = document.querySelector("#comp-score")
-    let playerScoreEl = document.querySelector("#player-score")
-    let gameRoundEl = document.querySelector("#game-round")
-    let guessPriceEl = document.querySelector("#guess-price-txt")
-    let guessRatingEl = document.querySelector("#guess-rating-txt")
-    let guessWeightEl = document.querySelector("#guess-weight-txt")
-    let priceInputDiv = document.querySelector(".price-input-div")    
-    let guessPriceButtonEl = document.querySelector("#price-guess-button")
-    let ratingInputDiv = document.querySelector(".rating-input-div")
-    let guessRatingButtonEl = document.querySelector("#rating-guess-button")    
-    let guessWeightButtonEl = document.querySelector("#weight-guess-button") 
-    let weightInputDiv = document.querySelector(".weight-input-div")   
-    let userWinEl = document.querySelector("#user-win-msg")
-    let compWinEl = document.querySelector("comp-win-msg")
+    const prodImgEl = document.querySelector("#prod-img");
+    const prodTitleEl = document.querySelector(".prod-title");
+    const prodDescEl = document.querySelector(".prod-description");
+    const prodCategoryEl = document.querySelector(".prod-category")
+    const computerScoreEl = document.querySelector("#comp-score")
+    const playerScoreEl = document.querySelector("#player-score")
+    const gameRoundEl = document.querySelector("#game-round")
+    const guessPriceEl = document.querySelector("#guess-price-txt")
+    const guessRatingEl = document.querySelector("#guess-rating-txt")
+    const guessWeightEl = document.querySelector("#guess-weight-txt")
+    const priceInputDiv = document.querySelector(".price-input-div")    
+    const guessPriceButtonEl = document.querySelector("#price-guess-button")
+    const ratingInputDiv = document.querySelector(".rating-input-div")
+    const guessRatingButtonEl = document.querySelector("#rating-guess-button")    
+    const guessWeightButtonEl = document.querySelector("#weight-guess-button") 
+    const weightInputDiv = document.querySelector(".weight-input-div")   
+    const userWinEl = document.querySelector("#user-win-msg")
+    const compWinEl = document.querySelector("comp-win-msg")
+    const resetButtonEl = document.querySelector(".reset-btn")
+    
+    //////Modal DOMs///// 
+        const modalDivEl = document.querySelector("#myModal")
+        const modalSpan = document.querySelector(".close")
+        const modalUserScore =document.querySelector("#modal-user-score")
+        const modalCompScore =document.querySelector("#modal-comp-score")
+        const modalActualValue =document.querySelector("#modal-actual-value")
+        const modalUserGuess =document.querySelector("#modal-user-guess")
+        const modalCompGuess =document.querySelector("#modal-comp-guess")
+        const modalNextRound =document.querySelector("#modal-next-round")
+        const modalCloseBtn = document.querySelector(".close-btn")
+
+
     
     
 // Product Array
@@ -65,7 +81,7 @@
             image: "imgs/instant-pot.png"
         },
         seniorWallDecal = {
-            title: "Wallmonkey Decal: Senior Woman with Asthma",
+            title: "Wall Monkey Decal: Senior Woman with Asthma",
             description: "Hang anywhere in your house!  Wall paint-safe; 48in x 41in decal; senior woman with asthma",
             category: "Appliances > Refridgerators, Freezers & Ice Makers",
             price: 49.99,
@@ -110,7 +126,7 @@
             image: "imgs/finger-covers.png"
         },
         desktopFridge = {
-            title: "desktop Fridge",
+            title: "Desktop Fridge",
             description: "Keep your beverage cold with this USB powered Minifridge.  Single can capacity - 24cu Inches.  Red plastic.",
             category: "Appliances > Refridgerators, Freezers & Ice Makers",
             price: 23.97,
@@ -143,7 +159,9 @@
     
 
 // Event Listeners
-    document.addEventListener('DOMContentLoaded', initializeGame)
+    document.addEventListener('DOMContentLoaded', initializeGame);
+    resetButtonEl.addEventListener('click', resetGame);
+
     // Button on page that only becomes active after all three fields are satisfied
     // Price Guess Input Text Field 
     // Rating Guess Input Text Field
@@ -176,20 +194,14 @@ function initializeGame () {
     realWeight = products[randomProductIndex].weight
         console.log("This is the actual weight " + realWeight)
 
-        if(currentRound > 1) {
+       
         weightInputDiv.setAttribute("id", "weight-hidden");
         guessWeightButtonEl.setAttribute("id", "weight-guess-button");
         
-        }else if(currentRound > 3){
-            endGame();
-        }
-
         priceInputDiv.removeAttribute("id");
-        guessPriceButtonEl.removeAttribute("id")
+        guessPriceButtonEl.removeAttribute("id");
         guessPriceButtonEl.addEventListener('click', userPriceGuess);
-
-
-
+        
 
     // Step 3: 
     // Inputting the game score values onto the page. 
@@ -215,52 +227,52 @@ function userPriceGuess () {
     let userPriceGuessPercent = Math.floor((((realPrice - userGuessPrice) / realPrice) * 100))
 
         if(userGuessPrice > realPrice) {
-            console.log("You over bid!  Negative Points!!!")
+            displayMessageUser = "You over bid!  Negative Points!!!"
             playerScore -=20;
             playerScoreEl.innerText = playerScore;
-            compPriceGuess(realPrice);
+            compPriceGuess(realPrice, displayMessageUser);
         }
         if (userPriceGuessPercent >.001  &&  userPriceGuessPercent <= 5) {
             playerScore += 35;
             playerScoreEl.innerText = playerScore;
-            console.log("Your price guess was " + userGuessPrice + " you got 35 points!");
-            compPriceGuess(realPrice);
+            displayMessageUser = "Your price guess was $" + userGuessPrice + ". You got 35 points!"
+            compPriceGuess(realPrice, displayMessageUser);
         }
         if (userPriceGuessPercent >5  &&  userPriceGuessPercent <= 10) {
             playerScore += 20;
-            console.log("Your price guess was " + userGuessPrice + " you got 20 points!");
+            displayMessageUser = "Your price guess was $" + userGuessPrice + ". You got 20 points!"
             playerScoreEl.innerText = playerScore;
-            compPriceGuess(realPrice);
+            compPriceGuess(realPrice, displayMessageUser);
         }
         if (userPriceGuessPercent >10  &&  userPriceGuessPercent <= 20) {
             playerScore += 10;
-            console.log("Your price guess was " + userGuessPrice + " you got 10 points!");
+            displayMessageUser = "Your price guess was $" + userGuessPrice + ". You got 10 points!"
             playerScoreEl.innerText = playerScore;
-            compPriceGuess(realPrice); 
+            compPriceGuess(realPrice, displayMessageUser); 
         }
         if (userPriceGuessPercent >20  &&  userPriceGuessPercent <= 30) {
             playerScore += 5;
-            console.log("Your price guess was " + userGuessPrice + " you got 5 points!");
+            displayMessageUser = "Your price guess was $" + userGuessPrice + ". You got 5 points!"
             playerScoreEl.innerText = playerScore;
-            compPriceGuess(realPrice);
+            compPriceGuess(realPrice, displayMessageUser);
         }
         if (userPriceGuessPercent >30  &&  userPriceGuessPercent <= 45) {
             playerScore += 1;
-            console.log("Your price guess was " + userGuessPrice + " you got 1 points!");
+            displayMessageUser = "Your price guess was $" + userGuessPrice + ". You got 1 point!"
             playerScoreEl.innerText = playerScore; 
-            compPriceGuess(realPrice);
+            compPriceGuess(realPrice, displayMessageUser);
         }
         if (userPriceGuessPercent > 45) {
             playerScore += 0;
-            console.log("Your price guess was " + userGuessPrice + ". Sorry!  Guess Better next time!");
+            displayMessageUser = "Your price guess was $" + userGuessPrice + ". Sorry, 0pts!  Guess Better next time!"
             playerScoreEl.innerText = playerScore;
-            compPriceGuess(realPrice); 
+            compPriceGuess(realPrice, displayMessageUser); 
         }
             else if (userGuessPrice == realPrice) {
                 playerScore += 55;
-                console.log("Your price guess was spot on at" + userGuessPrice + ".  Nice work, you got 55 points!!!");
+                displayMessageUser = "Your price guess was spot on at $" + userGuessPrice + "!!  Nice work, you got 55 points!!!"
                 playerScoreEl.innerText = playerScore;
-                compPriceGuess(realPrice);
+                compPriceGuess(realPrice, displayMessageUser);
             }
 
 } /////END evalPlayerPriceGuess Func here
@@ -271,7 +283,7 @@ function compPriceGuess (realPrice) {
 
 
     let adjustedRealPrice =  realPrice * 1.10
-        compGuessPrice = Math.floor(Math.random() * (adjustedRealPrice/2)) + (realPrice / 2)
+        compGuessPrice = Math.floor(Math.random() * (adjustedRealPrice/2) + (realPrice / 2))
               
     let compPriceGuessPercent = Math.floor((((realPrice - compGuessPrice) / realPrice) * 100))
     
@@ -280,57 +292,73 @@ function compPriceGuess (realPrice) {
                                     //////////////////////////////////////////////////////////////////
 
         if(compGuessPrice > realPrice) {
-            console.log("The Computer over bid!  Negative Points!!!")
+            displayMessageComp = "The Computer over bid!  Negative Points!!!"
             computerScore -=20
             computerScoreEl.innerText = computerScore
-            userRatingGuess();
+            displayScoresPrice(realPrice, displayMessageUser, displayMessageComp);
         }
         if (compPriceGuessPercent >.001  &&  compPriceGuessPercent <= 5) {
             computerScore += 35
             computerScoreEl.innerText = computerScore 
-            console.log("The computer price guess was " + compGuessPrice + " the computer recieved 35 points!");
-            userRatingGuess();
+            displayMessageComp = "The computer price guess was $" + compGuessPrice + ".  The computer recieved 35 points!"
+            displayScoresPrice(realPrice, displayMessageUser, displayMessageComp);
         }
         
         if (compPriceGuessPercent >5  &&  compPriceGuessPercent <= 10) {
             computerScore += 20
-            console.log("The computer price guess was " + compGuessPrice + " the computer recieved 20 points!");
+            displayMessageComp = "The computer price guess was $" + compGuessPrice + ". The computer recieved 20 points!"
             computerScoreEl.innerText = computerScore 
-            userRatingGuess();
+            displayScoresPrice(realPrice, displayMessageUser, displayMessageComp);
         }
         if (compPriceGuessPercent >10  &&  compPriceGuessPercent <= 20) {
             computerScore += 10
-            console.log("The computer price guess was " + compGuessPrice + " the computer recieved 10 points!");
+            displayMessageComp = "The computer price guess was $" + compGuessPrice + ". The computer recieved 10 points!"
             computerScoreEl.innerText = computerScore 
-            userRatingGuess();
+            displayScoresPrice(realPrice, displayMessageUser, displayMessageComp);
         }
         if (compPriceGuessPercent >20  &&  compPriceGuessPercent <= 30) {
             computerScore += 5
-            console.log("The computer price guess was " + compGuessPrice + " the computer recieved 5 points!");
+            displayMessageComp = "The computer price guess was $" + compGuessPrice + ". The computer recieved 5 points!"
             computerScoreEl.innerText = computerScore 
-            userRatingGuess();
+            displayScoresPrice(realPrice, displayMessageUser, displayMessageComp);
         }
         if (compPriceGuessPercent >30  &&  compPriceGuessPercent <= 45) {
             computerScore += 1
-            console.log("The computer price guess was " + compGuessPrice + " the computer recieved 1 points!");
+            displayMessageComp = "The computer price guess was $" + compGuessPrice + ". the computer recieved 1 point!"
             computerScoreEl.innerText = computerScore 
-            userRatingGuess();
+            displayScoresPrice(realPrice, displayMessageUser, displayMessageComp);
         }
         if (compPriceGuessPercent > 45) {
             computerScore += 0
-            console.log("The computer price guess was " + userGuessPrice + ". They gotta do better than that!!!");
+            displayMessageComp = "The computer price guess was $" + compGuessPrice + ". Good news 4U, they get 0 pts!"
             computerScoreEl.innerText = computerScore 
-            userRatingGuess();
+            displayScoresPrice(realPrice, displayMessageUser, displayMessageComp);
             
         }
             else if (compGuessPrice == realPrice) {
                 computerScore += 55
-                console.log("The computer price guess was spot on at " + compGuessPrice + " the computer recieved 55 points!  Yowza!!");
+                displayMessageComp = "The computer price guess was spot on at $" + compGuessPrice + ". The computer recieved 55 points!  Yowza!!"
                 computerScoreEl.innerText = computerScore 
-                userRatingGuess();
+                displayScoresPrice(realPrice, displayMessageUser, displayMessageComp);
             }
 
 } /////END compPriceGuess
+
+function displayScoresPrice(realPrice, displayMessageUser, displayMessageComp) {
+    modalDivEl.style.display = "block";
+    modalUserScore.innerText = "Your Score: " + playerScore;
+    modalCompScore.innerText = "Computer Score: " + computerScore;
+    modalActualValue.innerText = "The Actual Price of this item is: $" + realPrice + ".";
+    modalUserGuess.innerText = displayMessageUser;
+    modalCompGuess.innerText = displayMessageComp;
+    modalNextRound.innerText = "Ready to Guess the Rating on the " + products[randomProductIndex].title +"?"
+    modalCloseBtn.innerText = "GO TO RATING GUESS"
+    modalSpan.onclick = () => {
+        modalDivEl.style.display = "none";
+        userRatingGuess();
+    }
+
+}
 
 
 
@@ -356,46 +384,46 @@ function userRatingGuess() {
             let userRatingGuessPercent = (((realRating - userGuessRating) / realRating) * 100)
             
             if(userGuessRating > realRating) {
-                console.log("You over shot your rating guess!!!  Negative Points!!!")
+                displayMessageUser = "You over shot your rating guess!!!  Negative Points!!!"
                 playerScore -=5;
                 playerScoreEl.innerText = playerScore;
-                compRatingGuess(realRating);
+                compRatingGuess(realRating, displayMessageUser);
             }
             if (userRatingGuessPercent >.001  &&  userRatingGuessPercent <= 3) {
                 playerScore += 20;
                 playerScoreEl.innerText = playerScore;
-                console.log("Your rating guess was " + userGuessRating + " you got 20 points!");
-                compRatingGuess(realRating);
+                displayMessageUser = "Your rating guess was " + userGuessRating + "/5. You got 20 points!"
+                compRatingGuess(realRating, displayMessageUser);
             }
             if (userRatingGuessPercent >3  &&  userRatingGuessPercent <= 5) {
                 playerScore += 15;
-                console.log("Your rating guess was " + userGuessRating + " you got 15 points!");
+                displayMessageUser = "Your rating guess was " + userGuessRating + "/5. You got 15 points!"
                 playerScoreEl.innerText = playerScore;
-                compRatingGuess(realRating);
+                compRatingGuess(realRating, displayMessageUser);
             }
             if (userRatingGuessPercent >5  &&  userRatingGuessPercent <= 7) {
                 playerScore += 5;
-                console.log("Your rating guess was " + userGuessRating + " you got 15 points!");
+                displayMessageUser = "Your rating guess was " + userGuessRating + "/5. You got 15 points!"
                 playerScoreEl.innerText = playerScore;
-                compRatingGuess(realRating); 
+                compRatingGuess(realRating, displayMessageUser)
             }
             if (userRatingGuessPercent >7  &&  userRatingGuessPercent <= 10) {
                 playerScore += 1;
-                console.log("Your rating guess was " + userGuessRating + " you got 1 points!");
+                displayMessageUser = "Your rating guess was " + userGuessRating + "/5. You got 1 point!"
                 playerScoreEl.innerText = playerScore;
-                compRatingGuess(realRating);
+                compRatingGuess(realRating, displayMessageUser);
             }
             if (userRatingGuessPercent > 11) {
                 playerScore += 0;
-                console.log("Your rating guess was " + userGuessRating + " Sorry! 0 points! Guess Better!");
+                displayMessageUser = "Your rating guess was " + userGuessRating + "/5. Sorry! Not close Enough!  0 Points!"
                 playerScoreEl.innerText = playerScore;
-                compRatingGuess(realPrice); 
+                compRatingGuess(realRating, displayMessageUser); 
             }
                 else if (userGuessRating == realRating) {
                     playerScore += 35;
-                    console.log("Your rating guess was " + userGuessRating + " you got 35 points!");
+                    displayMessageUser = "Your rating guess was " + userGuessRating + "/5. Nice!! You got 35 points!"
                     playerScoreEl.innerText = playerScore;
-                    compRatingGuess(realRating);
+                    compRatingGuess(realRating, displayMessageUser);
                 }
             
     })/// End Button click Callback func
@@ -408,11 +436,11 @@ function userRatingGuess() {
                                     //////////////////////////////////////////////////////////////////
 
 
-function compRatingGuess (realRating) {
+function compRatingGuess (realRating, displayMessageUser) {
         
     let adjustedRealRating =  realRating * 1.10
 
-    compGuessRating = Math.floor(Math.random() * (adjustedRealRating/2)) + (realRating - 2)
+    compGuessRating = Math.floor(Math.random() * (adjustedRealRating/2) + (realRating - 2))
         
     let compRatingGuessPercent = Math.floor((((realRating - compGuessRating) / realRating) * 100))
 
@@ -422,49 +450,68 @@ function compRatingGuess (realRating) {
 
 
         if(compGuessRating > realRating) {
-            console.log("The computer over shot their rating guess!!!  Negative Points!!!")
+            displayMessageComp = "The computer over shot their rating guess!!!  Negative Points!!!"
             computerScore -=5;
             computerScoreEl.innerText = computerScore;
-            userWeightGuess();
+            displayScoresRating(realRating, displayMessageUser, displayMessageComp);
         }
         if (compRatingGuessPercent >.001  &&  compRatingGuessPercent <= 3) {
             computerScore += 20;
             computerScoreEl.innerText = computerScore;
-            console.log("the computer's rating guess was " + compGuessRating + " they got 20 points!");
-            userWeightGuess();
+            displayMessageComp = "the computer's rating guess was " + compGuessRating + "/5. They got 20 points!"
+            displayScoresRating(realRating, displayMessageUser, displayMessageComp);
         }
         if (compRatingGuessPercent >3  &&  compRatingGuessPercent <= 5) {
             computerScore += 15;
-            console.log("the computer's rating guess was " + compGuessRating + " they got 15 points!");
+            displayMessageComp = "the computer's rating guess was " + compGuessRating + "/5. They got 15 points!"
             computerScoreEl.innerText = computerScore;
-            userWeightGuess();
+            displayScoresRating(realRating, displayMessageUser, displayMessageComp);
         }
         if (compRatingGuessPercent >5  &&  compRatingGuessPercent <= 7) {
             computerScore += 5;
-            console.log("the computer's rating guess was " + compGuessRating + " they got 5 points!");
+            displayMessageComp = "the computer's rating guess was " + compGuessRating + "/5. They got 5 points!"
             computerScoreEl.innerText = computerScore;
-            userWeightGuess(); 
+            displayScoresRating(realRating, displayMessageUser, displayMessageComp); 
         }
         if (compRatingGuessPercent >7  &&  compRatingGuessPercent <= 10) {
             computerScore += 1;
-            console.log("the computer's rating guess was " + compGuessRating + " they got 1 point!");
+            displayMessageComp = "the computer's rating guess was " + compGuessRating + "/5. They got 1 point!"
             computerScoreEl.innerText = computerScore;
-            userWeightGuess();
+            displayScoresRating(realRating, displayMessageUser, displayMessageComp);
         }
         if (compRatingGuessPercent > 11) {
             computerScore += 0;
-            console.log("The Computer's rating guess was " + compGuessRating + " Big fat doughnut!  They gots ta do bettah!!!");
+            displayMessageComp = "The Computer's rating guess was " + compGuessRating + "/5.  Ain't close enough! They get a Big fat doughnut!"
             computerScoreEl.innerText = computerScore;
-            userWeightGuess(); 
+            displayScoresRating(realRating, displayMessageUser, displayMessageComp); 
         }
             else if (compGuessRating == realRating) {
                 computerScore += 35;
-                console.log("the computer's rating guess was " + compGuessRating + " they got 35 points!");
+                displayMessageComp = "the computer's rating guess was " + compGuessRating + "/5. Ouuu they guessed good, they got 35 points!"
                 computerScoreEl.innerText = computerScore;
-                userWeightGuess();
+                displayScoresRating(realRating, displayMessageUser, displayMessageComp);
             }
 
 }//////END compRatingGuess Func//////
+
+
+
+function displayScoresRating(realRating, displayMessageUser, displayMessageComp) {
+    modalDivEl.style.display = "block";
+    modalUserScore.innerText = "Your Score: " + playerScore;
+    modalCompScore.innerText = "Computer Score: " + computerScore;
+    modalActualValue.innerText = "The Actual Rating of this item is: " + realRating + "/5.";
+    modalUserGuess.innerText = displayMessageUser;
+    modalCompGuess.innerText = displayMessageComp;
+    modalNextRound.innerText = "Guessing the weight is next on the " + products[randomProductIndex].title +"!"
+    modalCloseBtn.innerText = "GO TO WEIGHT GUESS"
+    modalSpan.onclick = () => {
+        modalDivEl.style.display = "none";
+        userWeightGuess();
+    }
+
+}
+
 
 //////////////////////////////////////GUESS WEIGHT FUNCTIONALITY AND CONDITIONALS HERE////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -488,52 +535,52 @@ function userWeightGuess() {
             let userWeightGuessPercent = (((realWeight - userGuessWeight) / realWeight) * 100)
 
             if(userGuessWeight > realWeight) {
-                console.log("You over guessed the Weight!  Negative Points!!!")
+                displayMessageUser = "You over guessed the Weight!  Negative Points!!!"
                 playerScore -=20;
                 playerScoreEl.innerText = playerScore;
-                compWeightGuess(realWeight);
+                compWeightGuess(realWeight, displayMessageUser);
             }
             if (userWeightGuessPercent >.001  &&  userWeightGuessPercent <= 5) {
                 playerScore += 35;
                 playerScoreEl.innerText = playerScore;
-                console.log("Your price guess was " + userGuessWeight + " you got 35 points!");
-                compWeightGuess(realWeight);
+                displayMessageUser = "Your weight guess was " + userGuessWeight + "lbs. You got 35 points!"
+                compWeightGuess(realWeight, displayMessageUser);
             }
             if (userWeightGuessPercent >5  &&  userWeightGuessPercent <= 10) {
                 playerScore += 20;
-                console.log("Your price guess was " + userGuessWeight + " you got 20 points!");
+                displayMessageUser = "Your weight guess was " + userGuessWeight + "lbs. You got 20 points!"
                 playerScoreEl.innerText = playerScore;
-                compWeightGuess(realWeight);
+                compWeightGuess(realWeight, displayMessageUser);
             }
             if (userWeightGuessPercent >10  &&  userWeightGuessPercent <= 20) {
                 playerScore += 10;
-                console.log("Your price guess was " + userGuessWeight + " you got 10 points!");
+                displayMessageUser = "Your weight guess was " + userGuessWeight + "lbs. You got 10 points!"
                 playerScoreEl.innerText = playerScore;
-                compWeightGuess(realWeight); 
+                compWeightGuess(realWeight, displayMessageUser); 
             }
             if (userWeightGuessPercent >20  &&  userWeightGuessPercent <= 30) {
                 playerScore += 5;
-                console.log("Your price guess was " + userGuessWeight + " you got 5 points!");
+                displayMessageUser = "Your weight guess was " + userGuessWeight + "lbs. You got 5 points!"
                 playerScoreEl.innerText = playerScore;
-                compWeightGuess(realWeight);
+                compWeightGuess(realWeight, displayMessageUser);
             }
             if (userWeightGuessPercent >30  &&  userWeightGuessPercent <= 45) {
                 playerScore += 1;
-                console.log("Your price guess was " + userGuessWeight + " you got 1 points!");
+                displayMessageUser = "Your weight guess was " + userGuessWeight + "lbs. You got 1 point!"
                 playerScoreEl.innerText = playerScore; 
-                compWeightGuess(realWeight);
+                compWeightGuess(realWeight, displayMessageUser);
             }
             if (userWeightGuessPercent > 45) {
                 playerScore += 0;
-                console.log("Your price guess was " + userGuessWeight + ". Sorry!  Guess Better next time!");
+                displayMessageUser = "Your weight guess was " + userGuessWeight + "lbs. I award you 0 points."
                 playerScoreEl.innerText = playerScore;
-                compWeightGuess(realWeight); 
+                compWeightGuess(realWeight, displayMessageUser); 
             }
                 else if (userGuessWeight == realWeight) {
                     playerScore += 55;
-                    console.log("Your price guess was spot on at" + userGuessWeight + ".  Nice work, you got 55 points!!!");
+                    displayMessageUser = "Your weight guess was spot on at" + userGuessWeight + "lbs.  Nice work!!! you got 55 points!!!"
                     playerScoreEl.innerText = playerScore;
-                    compWeightGuess(realWeight);
+                    compWeightGuess(realWeight, displayMessageUser);
                 }
 
 
@@ -545,6 +592,7 @@ function userWeightGuess() {
 };//////END userWeight Guess
 
 
+
 function compWeightGuess(realWeight) {
 
     let adjustedRealWeight =  realWeight * 1.10
@@ -554,70 +602,150 @@ function compWeightGuess(realWeight) {
 
 
     if(compGuessWeight> realWeight) {
-        console.log("The Computer over guessed the Weight!  Negative Points!!!")
+        displayMessageComp = "The Computer over guessed the Weight!  Negative Points!!!"
         computerScore -=20
         computerScoreEl.innerText = computerScore
-        nextRound();
+        displayScoresWeight(realWeight, displayMessageUser, displayMessageComp);
     }
     if (compWeightGuessPercent >.001  &&  compWeightGuessPercent <= 5) {
         computerScore += 35
         computerScoreEl.innerText = computerScore 
-        console.log("The computer weight guess was " + compGuessWeight+ " the computer recieved 35 points!");
-        nextRound();
+        displayMessageComp = "The computer weight guess was " + compGuessWeight + "lbs. The computer recieved 35 points!"
+        displayScoresWeight(realWeight, displayMessageUser, displayMessageComp);
     }
     
     if (compWeightGuessPercent >5  &&  compWeightGuessPercent <= 10) {
         computerScore += 20
-        console.log("The computer weight guess was " + compGuessWeight+ " the computer recieved 20 points!");
+        displayMessageComp = "The computer weight guess was " + compGuessWeight + "lbs. The computer recieved 20 points!"
         computerScoreEl.innerText = computerScore 
-        nextRound();
+        displayScoresWeight(realWeight, displayMessageUser, displayMessageComp);
     }
     if (compWeightGuessPercent >10  &&  compWeightGuessPercent <= 20) {
         computerScore += 10
-        console.log("The computer weight guess was " + compGuessWeight+ " the computer recieved 10 points!");
+        displayMessageComp = "The computer weight guess was " + compGuessWeight + "lbs. The computer recieved 10 points!"
         computerScoreEl.innerText = computerScore 
-        nextRound();
+        displayScoresWeight(realWeight, displayMessageUser, displayMessageComp);
     }
     if (compWeightGuessPercent >20  &&  compWeightGuessPercent <= 30) {
         computerScore += 5
-        console.log("The computer weight guess was " + compGuessWeight+ " the computer recieved 5 points!");
+        displayMessageComp = "The computer weight guess was " + compGuessWeight + "lbs. The computer recieved 5 points!"
         computerScoreEl.innerText = computerScore 
-        nextRound();
+        displayScoresWeight(realWeight, displayMessageUser, displayMessageComp);
     }
     if (compWeightGuessPercent >30  &&  compWeightGuessPercent <= 45) {
         computerScore += 1
-        console.log("The computer weight guess was " + compGuessWeight+ " the computer recieved 1 points!");
+        displayMessageComp = "The computer weight guess was " + compGuessWeight + "lbs. The computer recieved 1 points!"
         computerScoreEl.innerText = computerScore 
-        nextRound();
+        displayScoresWeight(realWeight, displayMessageUser, displayMessageComp);
     }
     if (compWeightGuessPercent > 45) {
         computerScore += 0
-        console.log("The computer weight guess was " + userGuessPrice + ". They gotta do better than that!!!");
+        displayMessageComp = "The computer weight guess was " + compGuessWeight + "lbs. They gotta do better than that!!!"
         computerScoreEl.innerText = computerScore 
-        nextRound();
+        displayScoresWeight(realWeight, displayMessageUser, displayMessageComp);
         
     }
         else if (compGuessWeight== realWeight) {
             computerScore += 55
-            console.log("The computer price guess was spot on at " + compGuessWeight+ " the computer recieved 55 points!  Yowza!!");
+            displayMessageComp = "The computer price guess was spot on at " + compGuessWeight+ ". The computer recieved 55 points!  Yowza!!"
             computerScoreEl.innerText = computerScore 
-            nextRound();
+            displayScoresWeight(realWeight, displayMessageUser, displayMessageComp);
         }
 
 
 
 };//END of compGuessWeight Function
     
+function displayScoresWeight(realWeight, displayMessageUser, displayMessageComp) {
+    if(currentRound < 3){
+        modalDivEl.style.display = "block";
+        modalUserScore.innerText = "Your Score: " + playerScore;
+        modalCompScore.innerText = "Computer Score: " + computerScore;
+        modalActualValue.innerText = "The Actual weight of this item is: " + realWeight + "lbs.";
+        modalUserGuess.innerText = displayMessageUser;
+        modalCompGuess.innerText = displayMessageComp;
+        modalNextRound.innerText = "You ready for another one? Lezzz go!!!"
+        modalCloseBtn.innerText = "NEW ROUND!"
+        modalSpan.onclick = () => {
+            modalDivEl.style.display = "none";
+            nextRound();
+        }
+    }
+
+
+    if(currentRound == 3) {
+        modalDivEl.style.display = "block";
+        modalUserScore.style.display = "none";
+        modalCompScore.style.display = "none";
+        modalUserGuess.innerText = displayMessageUser;
+        modalCompGuess.innerText = displayMessageComp;
+        modalActualValue.innerText = "The Actual weight of this item is: " + realWeight + "lbs.";
+        // modalActualValue.style.border-bottom = "solid black";
+        modalNextRound.innerText = "That concludes our third round! To see who won, click below";
+        modalCloseBtn.innerText = "GET GAME RESULTS"
+        modalSpan.onclick = () => {
+            modalDivEl.style.display = "none";
+            endGame();
+        }
+    }
+        
+}
+
+
+
+/////////////////////////////////////////////////End Conditionals here////////////////////////////////////
+/////////////////////////////////////////////////End Conditionals here////////////////////////////////////
+
 
 function nextRound() {
-    currentRound++
+    currentRound = (currentRound + 1)
+    console.log(currentRound)
     initializeGame ();
 
 };
 
+function endGame (){
 
-function endGame (){};
+    modalDivEl.style.display = "block";
+    modalUserScore.innerText = "Your Final Score: " + playerScore;
+    modalCompScore.innerText = "Computer Final Score: " + computerScore;
+    modalUserGuess.style.display = "none";
+    modalCompGuess.style.display = "none";
+
+    if(playerScore > computerScore) {
+        modalActualValue.innerText = "YOU WON!!! CELEBRATE! You beat the computer by " + (playerScore - computerScore) + " points!  NiceWork!"; 
+    }else if(computerScore > playerScore) {
+        modalActualValue.innerText = "Boo Hoo. You lost! by " + (computerScore - playerScore) + " points.  Better Luck next time."; 
+    }else if (computerScore == playerScore) {
+        modalActualValue.innerText = "Wow.  Its a tie.  Thats mathematically VERY unlikely with this game.  Go play some lottery or something."; 
+    }   
+   
+    modalNextRound.innerText = "You ready play another game?  Click Below!!!"
+    modalCloseBtn.innerText = "NEW GAME!"
+    modalSpan.onclick = () => {
+        modalDivEl.style.display = "none";
+        resetGame();
+    }
+
+};///End of endGame Funcion here
     
+
+function resetGame() {
+    playerScore = 0;
+    computerScore = 0;
+    currentRound = 1;
+    modalUserScore.style.display = "block";
+    modalCompScore.style.display = "block";
+    modalActualValue.style.display = "block";
+    modalUserGuess.style.display = "block";
+modalCompGuess.style.display = "block";
+    modalNextRound.style.display = "block";
+    modalDivEl.style.display = "none";
+    
+    initializeGame();
+
+}
+
 
     
     // let userRatingGuessPercent = (((realRating - userGuessRating) / realRating) * 100)
