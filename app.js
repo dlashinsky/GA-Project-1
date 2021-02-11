@@ -369,71 +369,71 @@ function displayScoresPrice(realPrice, displayMessageUser, displayMessageComp) {
 
 
 function userRatingGuess() {
-    
-    priceInputDiv.setAttribute("id", "price-hidden");
-    guessPriceButtonEl.setAttribute("id", "price-guess-button");
 
-    ratingInputDiv.removeAttribute("id");
-    guessRatingButtonEl.removeAttribute("id")
-    
-    guessRatingButtonEl.addEventListener('click', () => {
-    
-        userGuessRating = guessRatingEl.value;
-        realRating = products[randomProductIndex].rating;
+priceInputDiv.setAttribute("id", "price-hidden");
+guessPriceButtonEl.setAttribute("id", "price-guess-button");
 
-            let userRatingGuessPercent = (((realRating - userGuessRating) / realRating) * 100)
-            
-            if(userGuessRating > realRating) {
-                displayMessageUser = "You over shot your rating guess!!!  Negative Points!!!"
-                playerScore -=5;
+ratingInputDiv.removeAttribute("id");
+guessRatingButtonEl.removeAttribute("id")
+
+guessRatingButtonEl.addEventListener('click', () => {
+
+    userGuessRating = guessRatingEl.value;
+    realRating = products[randomProductIndex].rating;
+
+    let userRatingGuessPercent = (((realRating - userGuessRating) / realRating) * 100)
+    
+    if(userGuessRating > realRating) {
+        displayMessageUser = "You over shot your rating guess!!!  Negative Points!!!"
+        playerScore -=5;
+        playerScoreEl.innerText = playerScore;
+        compRatingGuess(realRating, displayMessageUser);
+    }
+    if (userRatingGuessPercent >.001  &&  userRatingGuessPercent <= 3) {
+        playerScore += 20;
+        playerScoreEl.innerText = playerScore;
+        displayMessageUser = "Your rating guess was " + userGuessRating + "/5. You got 20 points!"
+        compRatingGuess(realRating, displayMessageUser);
+    }
+    if (userRatingGuessPercent >3  &&  userRatingGuessPercent <= 5) {
+        playerScore += 15;
+        displayMessageUser = "Your rating guess was " + userGuessRating + "/5. You got 15 points!"
+        playerScoreEl.innerText = playerScore;
+        compRatingGuess(realRating, displayMessageUser);
+    }
+    if (userRatingGuessPercent >5  &&  userRatingGuessPercent <= 7) {
+        playerScore += 5;
+        displayMessageUser = "Your rating guess was " + userGuessRating + "/5. You got 15 points!"
+        playerScoreEl.innerText = playerScore;
+        compRatingGuess(realRating, displayMessageUser)
+    }
+    if (userRatingGuessPercent >7  &&  userRatingGuessPercent <= 10) {
+        playerScore += 1;
+        displayMessageUser = "Your rating guess was " + userGuessRating + "/5. You got 1 point!"
+        playerScoreEl.innerText = playerScore;
+        compRatingGuess(realRating, displayMessageUser);
+    }
+    if (userRatingGuessPercent > 11) {
+        playerScore += 0;
+        displayMessageUser = "Your rating guess was " + userGuessRating + "/5. Sorry! Not close Enough!  0 Points!"
+        playerScoreEl.innerText = playerScore;
+        compRatingGuess(realRating, displayMessageUser); 
+    }
+        else if (userGuessRating == realRating) {
+            playerScore += 35;
+                displayMessageUser = "Your rating guess was " + userGuessRating + "/5. Nice!! You got 35 points!"
                 playerScoreEl.innerText = playerScore;
                 compRatingGuess(realRating, displayMessageUser);
             }
-            if (userRatingGuessPercent >.001  &&  userRatingGuessPercent <= 3) {
-                playerScore += 20;
-                playerScoreEl.innerText = playerScore;
-                displayMessageUser = "Your rating guess was " + userGuessRating + "/5. You got 20 points!"
-                compRatingGuess(realRating, displayMessageUser);
-            }
-            if (userRatingGuessPercent >3  &&  userRatingGuessPercent <= 5) {
-                playerScore += 15;
-                displayMessageUser = "Your rating guess was " + userGuessRating + "/5. You got 15 points!"
-                playerScoreEl.innerText = playerScore;
-                compRatingGuess(realRating, displayMessageUser);
-            }
-            if (userRatingGuessPercent >5  &&  userRatingGuessPercent <= 7) {
-                playerScore += 5;
-                displayMessageUser = "Your rating guess was " + userGuessRating + "/5. You got 15 points!"
-                playerScoreEl.innerText = playerScore;
-                compRatingGuess(realRating, displayMessageUser)
-            }
-            if (userRatingGuessPercent >7  &&  userRatingGuessPercent <= 10) {
-                playerScore += 1;
-                displayMessageUser = "Your rating guess was " + userGuessRating + "/5. You got 1 point!"
-                playerScoreEl.innerText = playerScore;
-                compRatingGuess(realRating, displayMessageUser);
-            }
-            if (userRatingGuessPercent > 11) {
-                playerScore += 0;
-                displayMessageUser = "Your rating guess was " + userGuessRating + "/5. Sorry! Not close Enough!  0 Points!"
-                playerScoreEl.innerText = playerScore;
-                compRatingGuess(realRating, displayMessageUser); 
-            }
-                else if (userGuessRating == realRating) {
-                    playerScore += 35;
-                    displayMessageUser = "Your rating guess was " + userGuessRating + "/5. Nice!! You got 35 points!"
-                    playerScoreEl.innerText = playerScore;
-                    compRatingGuess(realRating, displayMessageUser);
-                }
-            
-    })/// End Button click Callback func
-            
-            
-}/////END beginRatingGuess func
         
+})/// End Button click Callback func
+        
+        
+}/////END beginRatingGuess func
+    
 
                                             //////////CONDITIONALS FOR COMP RATING GUESS//////////////
-                                    //////////////////////////////////////////////////////////////////
+                                    //////////////////////////////////////////////////////////////////////////
 
 
 function compRatingGuess (realRating, displayMessageUser) {
@@ -738,7 +738,7 @@ function resetGame() {
     modalCompScore.style.display = "block";
     modalActualValue.style.display = "block";
     modalUserGuess.style.display = "block";
-modalCompGuess.style.display = "block";
+    modalCompGuess.style.display = "block";
     modalNextRound.style.display = "block";
     modalDivEl.style.display = "none";
     
