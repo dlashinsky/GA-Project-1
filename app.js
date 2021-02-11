@@ -137,7 +137,7 @@ const products = [
         price: 69.36,
         rating: 3.5,
         weight: .58,
-        image: "imgs/karaoke-horn.png"
+        image: "imgs/k-horn.png"
     },
     fingerCovers = {
         title: "Finger Covers",
