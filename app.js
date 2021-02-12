@@ -1,14 +1,21 @@
 
-var test;
+/////// Items to finish/////
 
 
-function preload() {
+//Bugs
 
-test = loadSound("music/background.mp3")
-}
+//1. When a random product is picked, remove from array.   When game "restarts" or page is refreshed add the items
+//       back into the products array.
 
 
+//Strech Goals/others: 
 
+//1. Finish creating class for itemsxxxxx
+//2. Add 15-20 more items to the product array
+//3. Create start page as a full Page Model of sorts
+//4. Create "skip" button to choose new items
+//5. Delete "Weight" guess functionality
+//6. Add multiple images to each item. 
 
 
 
@@ -33,6 +40,9 @@ let compGuessPercent = null;
 let randomProductIndex = null;
 let displayMessageComp = null;
 let displayMessageUser = null;
+let products = [...ALL_PRODUCTS];
+let products3 = Array.from(ALL_PRODUCTS);
+
 
 
 
@@ -79,121 +89,22 @@ documentBody.addEventListener("click", eventFunction)
     }
 
 //////Modal DOMs///// 
-const modalDivEl = document.querySelector("#myModal")
-const modalSpan = document.querySelector(".close")
-const modalUserScore =document.querySelector("#modal-user-score")
-const modalCompScore =document.querySelector("#modal-comp-score")
-const modalActualValue =document.querySelector("#modal-actual-value")
-const modalUserGuess =document.querySelector("#modal-user-guess")
-const modalCompGuess =document.querySelector("#modal-comp-guess")
-const modalNextRound =document.querySelector("#modal-next-round")
-const modalCloseBtn = document.querySelector(".close-btn")
+const modalDivEl = document.querySelector("#myModal");
+const modalSpan = document.querySelector(".close");
+const modalUserScore =document.querySelector("#modal-user-score");
+const modalCompScore =document.querySelector("#modal-comp-score");
+const modalActualValue =document.querySelector("#modal-actual-value");
+const modalUserGuess =document.querySelector("#modal-user-guess");
+const modalCompGuess =document.querySelector("#modal-comp-guess");
+const modalNextRound =document.querySelector("#modal-next-round");
+const modalCloseBtn = document.querySelector(".close-btn");
 
 
 
 
-// Product Array
-const products = [
-    instantPot = {
-        title: "Instant Pot Max",
-        description: "Pressure Cooker, 9 in 1 Best for Canning with 15PSI and serilizer, 6QT",
-        category: "Home & Kitchen",
-        price: 99.99,
-        rating: 4.7,
-        weight: 14.2,
-        image: "imgs/instant-pot.png"
-    },
-    seniorWallDecal = {
-        title: "Wall Monkey Decal: Senior Woman with Asthma",
-        description: "Hang anywhere in your house!  Wall paint-safe; 48in x 41in decal; senior woman with asthma",
-        category: "Appliances > Refridgerators, Freezers & Ice Makers",
-        price: 49.99,
-        rating: 5,
-        weight: 1.5,
-        image: "imgs/senior-wall-decal.png"
-    },
-    fingerPuppets = {
-        title: "Tiny Hand Finger Puppets",
-        description: "Pack of 12, instead of the usual 10!  Halloween hand prop accessories; dishwasher safe",
-        category: "Toys & Games",
-        price: 10.97,
-        rating: 4.7,
-        weight: .25,
-        image: "imgs/tinyhands.png"
-    },
-    catTissueHolder = {
-        title: "Catt Butt Tissue Holder",
-        description: "Orange Tabby Cat. Fits square tissue box. Made from molded resin. Microwave Safe",
-        category: "Home & Kitchen > Bath > Bathroom Accessories > Holders & Dispensers > Tissue Holders",
-        price: 39.95,
-        rating: 4.7,
-        weight: 30,
-        image: "imgs/cat-tissue-holder.png"
-    },
-    karaokeHorn = {
-        title: "Karaoke Horn",
-        description: "Take your voice where ever you go! Ultra Heat safe silicone up to 550F, for the HOT voices out there.  Machine wash cold; tumble dry",
-        category: "None",
-        price: 69.36,
-        rating: 3.5,
-        weight: .58,
-        image: "imgs/k-horn.png"
-    },
-    fingerCovers = {
-        title: "Finger Covers",
-        description: "Keep your fingers CLEAN with these finger food covers.  Enjoy your cheetos with peace.  3ct, red.  Washable, reusable, dishwasher safe.",
-        category: "Home & Kitchen > Kitchen & Dining > Kitchen Utensils & Gadgets",
-        price: 18.99,
-        rating: 4.4,
-        weight: .4,
-        image: "imgs/finger-covers.png"
-    },
-    desktopFridge = {
-        title: "Desktop Fridge",
-        description: "Keep your beverage cold with this USB powered Minifridge.  Single can capacity - 24cu Inches.  Red plastic.",
-        category: "Appliances > Refridgerators, Freezers & Ice Makers",
-        price: 23.97,
-        rating: 3.4,
-        weight: 1.41,
-        image: "imgs/desktop-fridge.png"
-    },
-    roastBeefSandSalt = {
-        title: "Bath Salts: Roast Beef Sandwich",
-        description: "Amber bath salts: Luxury.  Best gifts for best friends, significant other.  Au jus french dip.",
-        category: "Bath & Bathing Accessories > Bath > Minerals & Salts",
-        price: 14.95,
-        rating: 4.7,
-        weight: 1.5,
-        image: "imgs/roast-beef-bath.png"
-    },
-    nicCagePillow = {
-        title: "Nicolas Cage Sequin Pillow",
-        description: "Get to sleep right next to Nic Cage every night!  Magic sequin pillow case and pillow from red to Nic Cage.",
-        category: "Bedding > Decorative Pillows, Inserts & Covers > Throw Pillows",
-        price: 18.99,
-        rating: 4.5,
-        weight: 1.5,
-        image: "imgs/nic-cage-pillow.png"
-    }
-    
-
-
-]
 ////NOTE:  Should create a class for the new product Objects///////
 
-    // class product {
-    //     constructor(title, description, category, price, rating, weight, image) {
-    //         this.title = title;
-    //         this.description = description;
-    //         this.category = category;
-    //         this.price = price;
-    //         this.rating = rating;
-    //         this.weight = weight;
-    //         this.image = image;
-    //     }
 
-    // }
-    // let baconBandageStrips = new product ("Bacon Bandage Strips", "Ouch! That smarts! Treat your minor cuts, scrapes and scratches with the incredible healing power of meat."
         
 
 
@@ -227,9 +138,6 @@ function initializeGame () {
     //     backgroundMusic.play();
 
           
-  //Activating the game button to start on price & Console logging the actual price of products for coding purposes DELETE when done
-
-  
     realPrice = products[randomProductIndex].price;
     console.log("This is the actual price " + realPrice)
     realRating = products[randomProductIndex].rating
@@ -257,7 +165,7 @@ function initializeGame () {
 };  /////END intializeGame Func Here////
 
 
-
+console.log("TEST TEST " + randomProductIndex + ", " +  products[randomProductIndex])
 //////////////////////////////////////GUESS PRICE FUNCTIONALITY AND CONDITIONALS HERE////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -741,6 +649,7 @@ function displayScoresWeight(realWeight, displayMessageUser, displayMessageComp)
 
 function nextRound() {
     currentRound = (currentRound + 1)
+
     console.log(currentRound)
     initializeGame ();
 

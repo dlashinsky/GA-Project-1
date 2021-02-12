@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Zilla+Slab&display=swap" rel="stylesheet">
     <title>TPIR Amazon rendition</title>
-    <audio autoplay>
-        <source src="music/background.mp3" type="audio/mpeg">
-    </audio>
 </head>
 <body class = "body">
 
@@ -18,10 +17,12 @@
 
                 <div class = product-window> 
 
-                    <div class = title-text>Product:</div>
+                    <div class = title-text>Product</div>
                     <div class= prod-title> Product Title Goes here</div>
-                    <div class= desc-text>Description:</div>
-                    <div class= prod-description> Product Description Goes here</div>
+                    <div class= desc-text>Description</div>
+                    <div class= prod-description>Description Goes here</div>
+                    <div class = category-text>Category</div>
+                    <div class= prod-category>Category Goes Here</div> 
                     <div class= prod-photo-div>
                     
                         <img id= prod-img alt="image not found">
@@ -52,8 +53,6 @@
 
                 </div>
                     
-                <div class = category-text>Amazon Category</div>
-                <div class= prod-category>Category Goes Here</div> 
 
                 <button class = reset-btn> RESET GAME</button>
                 
@@ -135,10 +134,11 @@
     </div>
 
    
-    <!-- <audio controls autoplay muted>
-        <source src="music/background.mp3" type="audio/mpeg">
-    </audio> -->
-    <iframe autoplay src="music/quickclip.mp3" allow="autoplay" id="audio" style = "display: none"></iframe>
+    <iframe autoplay src="music/quickclip.mp3" allow="autoplay" class ="iFrame"></iframe>
+    <audio autoplay muted>
+        <source src="music/background.mp3" type="audio/mpeg" class ="audio-tag">
+    </audio>
 </body>
+<script src= "products.js"></script>
 <script src="app.js"></script>
 </html>
