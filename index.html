@@ -24,102 +24,57 @@
                     <div class = category-text>Category</div>
                     <div class= prod-category>Category Goes Here</div> 
                     <div class= prod-photo-div>
-                    
                         <img id= prod-img alt="image not found">
-                        
                     </div>
-
                 </div>
-
             </div>
-
-            <div class = sub-container-mid>
-                
+            <div class = sub-container-mid>               
                 <div class = current-round-div> Round
-
                     <div class = GS-values id= game-round></div>
-
                 </div>
-
-                <div class = GS-comp-score-div> Computer Score
-                    
+                <div class = GS-comp-score-div> Computer Score                    
                     <div class= GS-values id= comp-score>45</div>
-
                 </div>
-
-                <div class = GS-player-score-div> Your Score
-                    
+                <div class = GS-player-score-div> Your Score                   
                     <div class = GS-values id= player-score>45</div>
-
-                </div>
-                    
-
-                <button class = reset-btn> RESET GAME</button>
-                
-                
+                </div>                   
+                <button class = reset-btn> RESET GAME</button>               
             </div>
-
     </div>
-
-
         <div class = sub-container-right>
-
             <div class = gameplay-podium-div>
-
                 <div class = price-input-div id = "price-hidden">
-
-                    <img class = symbol src="imgs/price-symbol.png" alt="img not found">
-
-                     
-                        <input class= input type="text" name="Product Price" id="guess-price-txt">
-                    
-                    
-                  
+                    <img class = symbol src="imgs/price-symbol.png" alt="img not found">        
+                        <input class= input type="text" name="Product Price" id="guess-price-txt">     
                 </div>
 
-                <div id="myModal" class="modal">
-
-                    <!-- Modal content -->
-                    <div class="modal-content">
-                        <h2 id = modal-user-score></h2>
-                        <h2 id = modal-comp-score></h2>
-                        <h3 id = modal-actual-value></h3>
-                        <h3 id = modal-user-guess></h3>
-                        <h3 id = modal-comp-guess></h3>
-                        <h3 id = modal-next-round></h3>
-                        <span class="close"><button class = "close-btn"></button></span>
-                    </div>
-                  
-                  </div>
-
-                
+                        <!-- MODAL POP UP CONTENT -->
+                        <div id="myModal" class="modal">                   
+                            <div class="modal-content">
+                                <h2 id = modal-user-score></h2>
+                                <h2 id = modal-comp-score></h2>
+                                <h3 id = modal-actual-value></h3>
+                                <h3 id = modal-user-guess></h3>
+                                <h3 id = modal-comp-guess></h3>
+                                <h3 id = modal-next-round></h3>
+                                <span class="close"><button class = "close-btn"></button></span>
+                            </div>
+                        </div>
+                        <!-- MODAL POP UP CONTENT -->
+        
                 <div class = rating-input-div id = "rating-hidden"> 
-                    
-                    
                     <img class = symbol src="imgs/star-symbol.png" alt="img not found">
-                    
                     <input class= input type="text" name="Product Rating Value" id="guess-rating-txt">
-                    
-                </div>
-                
-                
-                <div class = weight-input-div id = "weight-hidden">
-                    
-                    <img class = symbol src="imgs/weight-symbol.png" alt="img not found">
-                    
-                    <input class= input type="text" name="Product Weight" id="guess-weight-txt">
-                    
-                </div>
-                
-                
+                </div>                              
+                <div class = weight-input-div id = "weight-hidden">                   
+                    <img class = symbol src="imgs/weight-symbol.png" alt="img not found">                   
+                    <input class= input type="text" name="Product Weight" id="guess-weight-txt">                   
+                </div>             
             </div>
-            
             <div class= guess-btn-div>
-                
                 <button class = button id = price-guess-button>Guess The Price!</button>
                 <button class = button id = rating-guess-button>Guess The Rating!</button>
-                <button class = button id = weight-guess-button>Guess The Weight!</button>
-               
+                <button class = button id = weight-guess-button>Guess The Weight!</button>             
             </div>
 
         </div>
@@ -134,10 +89,6 @@
     </div>
 
    
-    <iframe autoplay src="music/quickclip.mp3" allow="autoplay" class ="iFrame"></iframe>
-    <audio autoplay muted>
-        <source src="music/background.mp3" type="audio/mpeg" class ="audio-tag">
-    </audio>
 </body>
 <script src= "products.js"></script>
 <script src="app.js"></script>

@@ -96,7 +96,8 @@ let baconBandageStrips = new Product (
     "Health & Household > Bandaging Supplies, Adhesive Bandages",
     5.99,
     1.5,
-    "bacon-bandaid.png"
+    1.85,
+    "imgs/bacon-bandaid.png"
 );
 ALL_PRODUCTS.push(baconBandageStrips);
 
