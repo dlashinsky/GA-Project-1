@@ -13,7 +13,23 @@
     <div class = main-container>
 
     <div class = left-mid-divs-container>
-            <div class = sub-container-left>
+
+        <div class = game-state-div>               
+            <div class = current-round-div>
+                <span class = text-span>Round:</span>
+                <div class = GS-values id= game-round></div>
+            </div>
+            <div class = GS-comp-score-div> Computer Score                    
+                <div class= GS-values id= comp-score>45</div>
+            </div>
+            <div class = GS-player-score-div> Your Score                   
+                <div class = GS-values id= player-score>45</div>
+            </div>                   
+            <button class = reset-btn> RESET GAME</button>
+            <button class = new-item-btn> NEW ITEM</button>
+        </div>
+
+            <div class = product-info-container>
 
                 <div class = product-window> 
 
@@ -28,20 +44,8 @@
                     </div>
                 </div>
             </div>
-            <div class = sub-container-mid>               
-                <div class = current-round-div> Round
-                    <div class = GS-values id= game-round></div>
-                </div>
-                <div class = GS-comp-score-div> Computer Score                    
-                    <div class= GS-values id= comp-score>45</div>
-                </div>
-                <div class = GS-player-score-div> Your Score                   
-                    <div class = GS-values id= player-score>45</div>
-                </div>                   
-                <button class = reset-btn> RESET GAME</button>               
-            </div>
     </div>
-        <div class = sub-container-right>
+        <div class = user-input-container>
             <div class = gameplay-podium-div>
                 <div class = price-input-div id = "price-hidden">
                     <img class = symbol src="imgs/price-symbol.png" alt="img not found">        
@@ -58,6 +62,14 @@
                                 <h3 id = modal-comp-guess></h3>
                                 <h3 id = modal-next-round></h3>
                                 <span class="close"><button class = "close-btn"></button></span>
+                            </div>
+                        </div>
+                        <div  class="modal-2">                   
+                            <div class="modal-2-content">
+                                <h1 id = modal-message>PLACEHOLDER TEXT PLACEHOLDER TEXT PLACEHOLDER TEXT</h1>
+                                <span class="span-close"><button class = "nevermind-btn">Nevermind</button></span>
+                                <span class="span-add-new"><button class = "add-new-btn">Add New Item</button></span>
+
                             </div>
                         </div>
                         <!-- MODAL POP UP CONTENT -->

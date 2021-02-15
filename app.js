@@ -37,6 +37,7 @@ let displayMessageComp = null;
 let displayMessageUser = null;
 let products = [...ALL_PRODUCTS];
 let usedProducts =[];
+let newItemMully = 0;
 
 
 
@@ -75,8 +76,9 @@ const userWinEl = document.querySelector("#user-win-msg")
 const compWinEl = document.querySelector("comp-win-msg")
 const resetButtonEl = document.querySelector(".reset-btn")
 const documentBody = document.querySelector(".body")
+const newItemBtnEL = document.querySelector(".new-item-btn");
 
-//////Modal DOMs///// 
+//////Round Update Modal  DOMs///// 
 const modalDivEl = document.querySelector("#myModal");
 const modalSpan = document.querySelector(".close");
 const modalUserScore =document.querySelector("#modal-user-score");
@@ -86,6 +88,14 @@ const modalUserGuess =document.querySelector("#modal-user-guess");
 const modalCompGuess =document.querySelector("#modal-comp-guess");
 const modalNextRound =document.querySelector("#modal-next-round");
 const modalCloseBtn = document.querySelector(".close-btn");
+
+//Modal 2 DOMs//
+const modal2DivEl = document.querySelector(".modal-2");
+const modalSpanCloseEl = document.querySelector(".span-close")
+const modalSpanAddNewEl = document.querySelector(".span-add-new")
+const modalNevermindBtnEl = document.querySelector(".nevermind-btn")
+const modalAddNewBtnEl = document.querySelector(".add-new-btn")
+const modal2MsgEl = document.querySelector("#modal-message")
 
 
 
@@ -100,6 +110,8 @@ const modalCloseBtn = document.querySelector(".close-btn");
 
 document.addEventListener('DOMContentLoaded', initializeGame);
 resetButtonEl.addEventListener('click', resetGame);
+newItemBtnEL.addEventListener('click', newItemConds);
+
 // test = loadSound("music/background.mp3")
 
 // Button on page that only becomes active after all three fields are satisfied
@@ -111,21 +123,14 @@ resetButtonEl.addEventListener('click', resetGame);
 
 // Game Initialization 
 function initializeGame () {
-    //Step 1: Selecting a random product from the Array and DOM into page
-    //random index generator
+    
     randomProductIndex = Math.floor(Math.random() * products.length) 
     prodImgEl.src = products[randomProductIndex].image
-    //Insert Product Title
     prodTitleEl.innerText = products[randomProductIndex].title
-    //Insert Product Description
     prodDescEl.innerText = products[randomProductIndex].description
-    //Insert Product Category
     prodCategoryEl.innerText= products[randomProductIndex].category
-    //Background music
-    // backgroundMusic = new sound("music/game-background-music.mp3")
-    //     backgroundMusic.play();
 
-          
+    //Displaying in console log values of item in question
     realPrice = products[randomProductIndex].price;
     console.log("This is the actual price " + realPrice)
     realRating = products[randomProductIndex].rating
@@ -666,6 +671,7 @@ function resetGame() {
     playerScore = 0;
     computerScore = 0;
     currentRound = 1;
+    newItemMully = 0;
     modalUserScore.style.display = "block";
     modalCompScore.style.display = "block";
     modalActualValue.style.display = "block";
@@ -673,65 +679,51 @@ function resetGame() {
     modalCompGuess.style.display = "block";
     modalNextRound.style.display = "block";
     modalDivEl.style.display = "none";
+    ratingInputDiv.setAttribute("id", "rating-hidden");
+    guessRatingButtonEl.setAttribute("id", "rating-guess-button");
+    weightInputDiv.setAttribute("id", "weight-hidden");
+    guessWeightButtonEl.setAttribute("id", "weight-guess-button");
     
     initializeGame();
 
 }
 
+function insertNewItem () {
+    newItemMully += 1;
+    computerScoreEl.innerText = computerScore;
+    playerScoreEl.innerText = playerScore;
+    products.splice(randomProductIndex, 1);
+    randomProductIndex = Math.floor(Math.random() * products.length);
+    prodImgEl.src = products[randomProductIndex].image;
+    prodTitleEl.innerText = products[randomProductIndex].title;
+    prodDescEl.innerText = products[randomProductIndex].description;
+    prodCategoryEl.innerText= products[randomProductIndex].category;
+    modal2DivEl.style.display = "none";
+}
 
-    
-    // let userRatingGuessPercent = (((realRating - userGuessRating) / realRating) * 100)
-    
-    
-    // let userWeightGuessPercent = (((realWeight - userGuessWeight) / realWeight) * 100)
+function newItemConds () {
+    modal2DivEl.style.display = "block";
+    modalSpanCloseEl.onclick = () => {
+        modal2DivEl.style.display = "none";
+    }
 
-
-
-
-
-/////Evaluate Answers Function Bracket here/////
-
-
-
-
-
-    // compGuessPercent = (((realPrice - compGuessPrice.value) / realPrice) * 100)  
-    //     if (compGuessPercent <= 5) {
-    //             computerScore =+ 35
-    //             computerScoreEl.innerText(computerScore.Value)
-    //             checkWin();
-    //             //(strech goal)run nextRound Function 
-    //         }
-        
-        
-
-// checkWin function 
-
-//     if playerScore.value > computerScore.value {
-//         userWinEl.classlist.remove("hidden")
-        
-
-//    }else{
-//        compWinEl.classlist.remove("hidden")
-//   }
-
-
-//   displayWinner function 
-  
-  
-  
-  //(Strech Goal) nextRound Function 
-  
-      // Checks current round with condtional statment to see if to end game
-     //     if(round.value < 4){
-     //         run displayWinner function
-            
-      //     }else{
-  
-     //         Checks playerScore Value vs. Computer score value
-     //         playerScoreEl.innerText(playerScore.value)
-      //         computerScoreEl.innerText(computerScore.value)
-     //         round.value++
-     //         run next round function
-  
-     //     }
+    if (newItemMully < 1) {
+        modal2MsgEl.innerText = "Are you sure? You get one Mulligan skip item without a penalty, and a maximum of 3 skips.";
+        modalSpanAddNewEl.onclick = () => {
+            insertNewItem ();
+        } 
+    }
+    else if (newItemMully >= 1  && newItemMully <= 2) {
+        modal2MsgEl.innerText = "Are you certain??? You've already used up your skip mully!  This will give the computer 15 of YOUR points!"
+        modalSpanAddNewEl.onclick = () => {
+            playerScore -= 15
+            computerScore += 15
+            insertNewItem ()
+        }
+    }
+    else if(newItemMully == 3) {
+        modal2MsgEl.innerText = "Sorry! No more skips allowed!"
+        modalSpanAddNewEl.style.display = "none";
+        setTimeout(function(){modal2DivEl.style.display = "none";}, 2200);
+    }
+}
