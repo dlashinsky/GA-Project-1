@@ -42,6 +42,7 @@ body {
     border-radius: 20mm;
     margin-top: 10px;
     background-color:silver;
+    background-image: linear-gradient(silver, white);
 
 }
 
