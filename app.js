@@ -55,6 +55,7 @@ const modalUserGuess =document.querySelector("#modal-user-guess");
 const modalCompGuess =document.querySelector("#modal-comp-guess");
 const modalNextRound =document.querySelector("#modal-next-round");
 const modalCloseBtn = document.querySelector(".close-btn");
+const modalWinnerMsg = document.querySelector("#modal-winner-message")
 
 //Modal 2 DOMs//
 const modal2DivEl = document.querySelector(".modal-2");
@@ -589,11 +590,11 @@ function endGame (){
     modalCompGuess.style.display = "none";
 
     if(playerScore > computerScore) {
-        modalActualValue.innerText = "YOU WON!!! CELEBRATE! You beat the computer by " + (playerScore - computerScore) + " points!  NiceWork!"; 
+        modalWinnerMsg.innerText = "YOU WON!!! CELEBRATE! You beat the computer by " + (playerScore - computerScore) + " points!  NiceWork!"; 
     }else if(computerScore > playerScore) {
-        modalActualValue.innerText = "Boo Hoo. You lost! by " + (computerScore - playerScore) + " points.  Better Luck next time."; 
+        modalWinnerMsg.innerText = "Boo Hoo. You lost! by " + (computerScore - playerScore) + " points.  Better Luck next time."; 
     }else if (computerScore == playerScore) {
-        modalActualValue.innerText = "Wow.  Its a tie.  Thats mathematically VERY unlikely with this game.  Go play some lottery or something."; 
+        modalWinnerMsg.innerText = "Wow.  Its a tie.  Thats mathematically VERY unlikely with this game.  Go play some lottery or something."; 
     }   
    
     modalNextRound.innerText = "You ready play another game?  Click Below!!!"

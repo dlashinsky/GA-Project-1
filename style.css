@@ -304,7 +304,7 @@ body {
 
 /* MODAL STYLING */
 #modal-actual-value{
-    color: boa;
+    margin-top: 2%;
 }
 #modal-user-score{
     color: White;
