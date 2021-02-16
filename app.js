@@ -56,6 +56,7 @@ const modalCompGuess =document.querySelector("#modal-comp-guess");
 const modalNextRound =document.querySelector("#modal-next-round");
 const modalCloseBtn = document.querySelector(".close-btn");
 const modalWinnerMsg = document.querySelector("#modal-winner-message")
+const modalAdjust = document.querySelector(".modal-adjust-div")
 
 //Modal 2 DOMs//
 const modal2DivEl = document.querySelector(".modal-2");
@@ -552,6 +553,7 @@ function displayScoresWeight(realWeight, displayMessageUser, displayMessageComp)
         modalCompScore.style.display = "none";
         modalUserGuess.innerText = displayMessageUser;
         modalCompGuess.innerText = displayMessageComp;
+        modalAdjust.style.margin = "5%";
         modalActualValue.innerText = "The Actual weight of this item is: " + realWeight + "lbs.";
         // modalActualValue.style.border-bottom = "solid black";
         modalNextRound.innerText = "That concludes our third round! To see who won, click below";
@@ -619,10 +621,12 @@ function resetGame() {
     modalCompGuess.style.display = "block";
     modalNextRound.style.display = "block";
     modalDivEl.style.display = "none";
+    modalWinnerMsg.style.display = "none";
     ratingInputDiv.setAttribute("id", "rating-hidden");
     guessRatingButtonEl.setAttribute("id", "rating-guess-button");
     weightInputDiv.setAttribute("id", "weight-hidden");
     guessWeightButtonEl.setAttribute("id", "weight-guess-button");
+    modalAdjust.style.margin = "0%";
     initializeGame();
 
 }///END resetGame Func here

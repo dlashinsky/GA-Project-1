@@ -303,6 +303,11 @@ body {
 
 
 /* MODAL STYLING */
+.modal-adjust-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 #modal-actual-value{
     margin-top: 2%;
 }
