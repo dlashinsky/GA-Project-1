@@ -200,7 +200,7 @@ function userPriceGuess () {
         }
         else if (userPriceGuessPercent > 45) {
             playerScore += 0;
-            displayMessageUser = "Your price guess was $" + userGuessPrice + ". Sorry, 0pts!  Guess Better next time!"
+            displayMessageUser = "Your price guess was $" + userGuessPrice + ". Sorry, 0 pts!  Guess Better next time!"
             playerScoreEl.innerText = playerScore;
             compPriceGuess(realPrice, displayMessageUser); 
         }

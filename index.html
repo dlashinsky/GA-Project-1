@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Zilla+Slab&family=Monoton&family=Orbitron:wght@600&family=Russo+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Zilla+Slab&family=Monoton&family=Orbitron:wght@600&family=Russo+One&family=Damion&display=swap" rel="stylesheet">
     <title>TPIR Amazon rendition</title>
 </head>
 <body class = "body">
@@ -70,11 +70,21 @@
                         <!-- MODAL POP UP CONTENT -->
                         <div id="myModal" class="modal">                   
                             <div class="modal-content">
-                                <h2 id = modal-user-score></h2>
-                                <h2 id = modal-comp-score></h2>
+                                
                                 <h3 id = modal-actual-value></h3>
-                                <h3 id = modal-user-guess></h3>
-                                <h3 id = modal-comp-guess></h3>
+                                <div class = modal-text-container>
+
+                                    <div class = modal-user-text-div>
+                                        <h2 id = modal-user-score></h2>
+                                        <h3 id = modal-user-guess></h3>
+                                    </div>
+                                    <div class = modal-comp-text-div>
+                                        <h2 id = modal-comp-score></h2>
+                                        <h3 id = modal-comp-guess></h3>
+                                    </div>
+
+                                </div>
+                        
                                 <h3 id = modal-next-round></h3>
                                 <span class="close"><button class = "close-btn"></button></span>
                             </div>

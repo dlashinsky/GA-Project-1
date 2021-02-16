@@ -123,3 +123,72 @@ let roastBeefandSalt = new Product (
 );   
 ALL_PRODUCTS.push(roastBeefandSalt);
 
+let handiSquirrel= new Product (
+    "Handi-Squirrel",
+    "Amazing hand puppet!  Transform your hand into a squirrel in seconds!  Great for the dinner table.  Machine wash, Cold.",
+    "Toys & Games",
+    14.49,
+    4.7,
+    .25,
+    "imgs/handi-squirrel.png"
+);   
+ALL_PRODUCTS.push(handiSquirrel);
+
+let yodelPickle= new Product (
+    "The Yodel Pickle",
+    'Electronic, mobile yodling pickle!  Take anywhere to yodel-on-the-go!  "Yodel-ay-eee-hoo!" ',
+    "Toys & Games",
+    12.88,
+    4.6,
+    .45,
+    "imgs/yodel-pickle.png"
+);   
+ALL_PRODUCTS.push(yodelPickle);
+
+let spotPopper= new Product (
+    "Spot Popper",
+    '"Pop that zit, will ya!" Well now you can at anytime!  The zit popping game is here!',
+    "Toys & Games",
+    15.99,
+    4,
+    .40,
+    "imgs/spot-popper.png"
+);   
+ALL_PRODUCTS.push(spotPopper);
+
+let bruhButton= new Product (
+    "The Bruh Button",
+    '"Bruh...Bruh....Bruh!"  Have a blast with this button that allows you to "bruh" anyone, anywhere!',
+    "Toys & Games",
+    16.99,
+    4.7,
+    .20,
+    "imgs/bruh-button.png"
+);   
+ALL_PRODUCTS.push(bruhButton);
+
+let henHandbag= new Product (
+    "The Hen Handbag",
+    "Be the talk of the town with this slice of fashion!  Nothing says high class better than a beak and feathers!  Made of high quality rubber, weather resistant, and waterproof!",
+    "Women's fashion",
+    42.99,
+    4.5,
+    .75,
+    "imgs/hen-handbag.png"
+);   
+ALL_PRODUCTS.push(henHandbag);
+
+let facePiggy= new Product (
+    "Face Piggy Bank",
+    "This interactive piggy bank eats your food for you, so you don't have to! Look at that smile!  Just reach over and he'll chomp down that money!",
+    "Appliances",
+    16.99,
+    3.8,
+    .58,
+    "imgs/face-bank.png"
+);   
+ALL_PRODUCTS.push(facePiggy);
+
+
+
+
