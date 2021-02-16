@@ -1,21 +1,4 @@
 
-/////// Items to finish/////
-
-
-//Bugs
-//
-//Strech Goals/others: 
-
-
-//2. Add 15-20 more items to the product array
-//3. Create start page as a full Page Model of sorts
-//4. Create "skip" button to choose new items
-//5. Delete "Weight" guess functionality
-//6. Add multiple images to each item. 
-
-
-
-
 // State Variables 
 
 let realPrice = null;
@@ -38,22 +21,6 @@ let displayMessageUser = null;
 let products = [...ALL_PRODUCTS];
 let usedProducts =[];
 let newItemMully = 0;
-
-
-
-
-
-// Point System (based on guesses)  Written as Conditional Statements
-// guess value === real value ---> 55pts
-// 5% or less distance to real value ---> 35 pts
-// > 5.1% || < 10% distance to real value ---> 20 pts
-// > 10.1% || < 20% distance to real value ---> 10 pts
-// > 20.1% || < 30% distance to real value ---> 5 pts
-// > 30.1% || < 45% distance to real value ---> 1 pt
-// < 45.1% distance to real value ---> 0pts
-
-
-
 
 // DOM Variables
 const prodImgEl = document.querySelector("#prod-img");
@@ -98,27 +65,11 @@ const modalAddNewBtnEl = document.querySelector(".add-new-btn")
 const modal2MsgEl = document.querySelector("#modal-message")
 
 
-
-
-////NOTE:  Should create a class for the new product Objects///////
-
-
-        
-
-
-// Event Listeners
+// Initial Event Listeners
 
 document.addEventListener('DOMContentLoaded', initializeGame);
 resetButtonEl.addEventListener('click', resetGame);
 skipItemBtnEL.addEventListener('click', newItemConds);
-
-// test = loadSound("music/background.mp3")
-
-// Button on page that only becomes active after all three fields are satisfied
-// Price Guess Input Text Field 
-// Rating Guess Input Text Field
-// Weight Guess Input Text Field
-
 
 
 // Game Initialization 
@@ -211,7 +162,7 @@ function userPriceGuess () {
                 compPriceGuess(realPrice, displayMessageUser);
         }
 
-} /////END evalPlayerPriceGuess Func here
+} /////END userPriceGuess Func
 
 
 
@@ -220,12 +171,7 @@ function compPriceGuess (realPrice) {
 
     let adjustedRealPrice =  realPrice * 1.10
     compGuessPrice = Math.floor(Math.random() * (adjustedRealPrice/2) + (realPrice / 2))
-              
     let compPriceGuessPercent = Math.floor((((realPrice - compGuessPrice) / realPrice) * 100))
-    
-    
-                                            //////////CONDITIONALS FOR COMP PRICE GUESS//////////////
-                                    //////////////////////////////////////////////////////////////////
 
         if(compGuessPrice > realPrice) {
             displayMessageComp = "The Computer over bid!  Negative Points!!!"
@@ -280,6 +226,8 @@ function compPriceGuess (realPrice) {
 
 } /////END compPriceGuess
 
+////////Model Display after Price Guess has occured///////
+
 function displayScoresPrice(realPrice, displayMessageUser, displayMessageComp) {
     modalDivEl.style.display = "block";
     modalUserScore.innerText = "Your Score: " + playerScore;
@@ -295,25 +243,18 @@ function displayScoresPrice(realPrice, displayMessageUser, displayMessageComp) {
         guessPriceButtonEl.setAttribute("id", "price-guess-button");
         ratingInputDiv.removeAttribute("id");
         guessRatingButtonEl.removeAttribute("id")
-        guessRatingButtonEl.addEventListener('click', userRatingGuess);
-        // userRatingGuess();
+        guessRatingButtonEl.addEventListener('click', userRatingGuess);  // <----ASK ABOUT THIS BUG HERE
     }
 
 }
 
-
-
 //////////////////////////////////////GUESS RATING FUNCTIONALITY AND CONDITIONALS HERE////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 
 function userRatingGuess() {
 
 priceInputDiv.setAttribute("id", "price-hidden");
 guessPriceButtonEl.setAttribute("id", "price-guess-button");
-
 ratingInputDiv.removeAttribute("id");
 guessRatingButtonEl.removeAttribute("id")
 
@@ -461,7 +402,6 @@ function displayScoresRating(realRating, displayMessageUser, displayMessageComp)
 
 function userWeightGuess() {
     
-
     // ratingInputDiv.setAttribute("id", "rating-hidden");
     // guessRatingButtonEl.setAttribute("id", "rating-guess-button");
     // weightInputDiv.removeAttribute("id");
@@ -470,7 +410,6 @@ function userWeightGuess() {
 
     userGuessWeight = guessWeightEl.value;
     realWeight = products[randomProductIndex].weight;
-
     let userWeightGuessPercent = (((realWeight - userGuessWeight) / realWeight) * 100)
 
     if(userGuessWeight > realWeight) {
@@ -520,9 +459,7 @@ function userWeightGuess() {
         displayMessageUser = "Your weight guess was spot on at" + userGuessWeight + "lbs.  Nice work!!! you got 55 points!!!"
         playerScoreEl.innerText = playerScore;
         compWeightGuess(realWeight, displayMessageUser);
-    }
-
-    // });/////END Weight guess button Click Call back Function 
+    } 
 
 };//////END userWeight Guess
 
@@ -580,12 +517,12 @@ function compWeightGuess(realWeight) {
         displayScoresWeight(realWeight, displayMessageUser, displayMessageComp);
         
     }
-        else if (compGuessWeight== realWeight) {
-            computerScore += 55
-            displayMessageComp = "The computer price guess was spot on at " + compGuessWeight+ ". The computer recieved 55 points!  Yowza!!"
-            computerScoreEl.innerText = computerScore 
-            displayScoresWeight(realWeight, displayMessageUser, displayMessageComp);
-        }
+    else if (compGuessWeight== realWeight) {
+        computerScore += 55
+        displayMessageComp = "The computer price guess was spot on at " + compGuessWeight+ ". The computer recieved 55 points!  Yowza!!"
+        computerScoreEl.innerText = computerScore 
+        displayScoresWeight(realWeight, displayMessageUser, displayMessageComp);
+    }
 
 
 
@@ -632,6 +569,7 @@ function displayScoresWeight(realWeight, displayMessageUser, displayMessageComp)
 /////////////////////////////////////////////////End Conditionals here////////////////////////////////////
 
 
+//TO BEGIN NEXT ROUND AFTER ALL 3 GUESSES HAVE BEEN COMPLETED//
 function nextRound() {
     currentRound = (currentRound + 1);
     console.log("this is the RPI in nextRound " + randomProductIndex);
@@ -641,6 +579,7 @@ function nextRound() {
 
 };
 
+///TO END THE GAME AFTER 3 ROUNDS-- MODAL DISPLAY AND SCORE TALLIES//
 function endGame (){
 
     modalDivEl.style.display = "block";
@@ -664,9 +603,9 @@ function endGame (){
         resetGame();
     }
 
-};///End of endGame Funcion here
+};///End of endGame Func here
     
-
+///RESET GAME FUNCTIONALITY 
 function resetGame() {
     playerScore = 0;
     computerScore = 0;
@@ -683,11 +622,11 @@ function resetGame() {
     guessRatingButtonEl.setAttribute("id", "rating-guess-button");
     weightInputDiv.setAttribute("id", "weight-hidden");
     guessWeightButtonEl.setAttribute("id", "weight-guess-button");
-    
     initializeGame();
 
-}
+}///END resetGame Func here
 
+///SKIP OPTION FUNCTIONALITY 
 function insertNewItem () {
     newItemMully += 1;
     computerScoreEl.innerText = computerScore;
