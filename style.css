@@ -16,9 +16,10 @@ body {
     width: 55%;
     min-height: 775px;
     justify-content: top;
-    background-color:rgb(223,111,35);
+    /* background-color:rgb(223,111,35); */
     /* border: 4px solid gold; */
     border-radius: 30px;
+    background-image: linear-gradient(to right, rgb(179, 90, 7), orange);
 }
 
 .left-mid-divs-container {
@@ -43,7 +44,6 @@ body {
     margin-top: 10px;
     background-color:silver;
     background-image: linear-gradient(silver, white);
-
 }
 
 .current-round-div{
