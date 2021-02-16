@@ -4,14 +4,17 @@
 body {
     display: flex;
     justify-content: center; 
+    width: 100vw;
+    height: 10vw;
+    position: absolute;
 }
 
 .main-container {
     display:flex;
     flex-direction: column;
     width: 60%;
-    height: 15%;
-    justify-content: center;
+    height: 80vw;
+    justify-content: top;
     border: 8px solid black;
 }
 
@@ -28,7 +31,7 @@ body {
     border: 2px solid blue;
     display: flex;
     flex-direction: row;
-    width: 80%;
+    width: 100%;
     height: 100px;
     text-align: center;
     justify-content: center;
@@ -42,16 +45,25 @@ body {
     flex-direction: row;
     justify-content: center;
     margin: auto;
+    /* margin-right: 10%; */
 }
 
 .text-span{
-    font-size: xxx-large;
+    font-size: xx-large;
+    font-family:'Monoton', Cursive;
+    padding-top: 7%;
 }
 
 #game-round {
-    border: 2px solid white;
+    border: 5px solid red;
+    border-radius: 50%;
     font-size: xxx-large;
+    height: 70px;
+    width: 70px;
     margin-left: 15px;
+    font-family:'Monoton', Cursive;
+    color:rgb(241, 201, 23);
+    background-color: red;
 
 }
 
@@ -60,28 +72,48 @@ body {
     margin: 2%;
     display: flex;
     flex-direction: column;
+    font-family: 'Russo One', sans-serif;
 }
 
 #comp-score {
     border: 2px solid greenyellow;
     font-size: xx-large;
+
 }
 
 
 .GS-player-score-div{
     border: 2px solid red;
     margin: 2%;
+    font-family: 'Russo One', sans-serif;
 }
 #player-score {
     border: 2px solid greenyellow;
     font-size: xx-large;
 }
 
-.reset-btn {
-    width: 10vw;
-    height: 2.5vw;
+.button-div {
     margin: auto;
-  
+    display:flex;
+    flex-direction: column;
+}
+.border-btn-div {
+    border-bottom: 3px solid black;
+    padding-bottom: 4%;
+}
+
+.upper-btn {
+    width: 150px;
+    height: 35px;
+    margin: auto;
+    color: white;
+    font-size: x-large;
+    font-family: 'Orbitron', sans-serif;
+    background-color:rgb(234,29,29);
+    border-radius: 30mm;
+}
+#skip-item-btn {
+    margin-top: 5%;
 }
 
 
@@ -99,7 +131,6 @@ body {
 
 .product-window {
     border: 2px solid red;
-    padding: 5%;
     width: 80%;
     margin-left: auto;
     margin-right: auto;
@@ -110,9 +141,8 @@ body {
 
 .prod-title {
     border: 2px solid greenyellow;
-    padding: 2%;
     text-align: center;
-    font-size: xx-large;
+    font-size: 40px;
     font-family: 'Zilla Slab', serif;
 
 }
@@ -121,15 +151,6 @@ body {
     padding: 2%;
     text-align: center;
     font-family: 'Zilla Slab', serif;
-}
-.prod-photo-div {
-    border: 2px solid greenyellow;
-    padding: 2%;
-    display: flex;
-    justify-content: center;
-    width: fit-content;
-    height: fit-content;
-
 }
 
 .prod-category{
@@ -142,11 +163,20 @@ body {
     font-size: 20px;
     font-family: 'Zilla Slab', serif;
 }
+.prod-photo-div {
+    border: 2px solid greenyellow;
+    display: flex;
+    justify-content: center;
+    max-width: 30%;
+    min-width: 30%;
+    max-height: auto%;
+    min-height: auto%;
+    margin: auto;
+}
 
 #prod-img {
-    width: 60%;
-    height: auto;
-
+    max-width: 80%;
+    max-height: 100%;
 }
 
 
@@ -314,4 +344,45 @@ body {
     border: 1px solid #888;
     width: 30%; 
     height: 200px;
+  }
+
+
+
+  .game-start-container {
+      position: fixed;
+      width: 80%;
+      height: 95%;
+      overflow: auto;
+      background-color: red;
+
+  }
+
+  .amazon-logo-div {
+    border: 2px solid black;
+    width: 200px;
+    height: auto;
+  }
+
+  #amazon {
+      max-width: 100%;
+      max-height: 100%;
+      margin-top: auto;
+  }
+
+  .TPIR-logo-div {
+    border: 2px solid black;
+  }
+
+  #TPIR {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .logo-divs {
+      border: 4px solid yellow;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+
+    
   }

@@ -24,8 +24,8 @@ let instantPot = new Product (
 ALL_PRODUCTS.push(instantPot);
 
 let seniorWallDecal = new Product (
-    "Wall Monkey Decal: Senior Woman with Asthma",
-    "Hang anywhere in your house!  Wall paint-safe; 48in x 41in decal; senior woman with asthma",
+    "Stick-able Wall Decal",
+    ' "Senior woman with Asthma" Hang anywhere in your house!  Wall paint-safe; 48in x 41in decal; senior woman with asthma',
     "Appliances > Refridgerators, Freezers & Ice Makers",
     49.99,
     5,
@@ -46,9 +46,9 @@ let fingerPuppets = new Product (
 ALL_PRODUCTS.push(fingerPuppets);
 
 let catTissueHolder = new Product (
-    "Catt Butt Tissue Holder",
+    "Cat Butt Tissue Holder",
     "Orange Tabby Cat. Fits square tissue box. Made from molded resin. Microwave Safe",
-    "Home & Kitchen > Bath > Bathroom Accessories > Holders & Dispensers > Tissue Holders",
+    "Home & Kitchen > Bath > Tissue Holders",
     39.95,
     4.7,
     30,
@@ -82,7 +82,7 @@ ALL_PRODUCTS.push(fingerCovers);
 let desktopFridge = new Product (
     "Desktop Fridge",
     "Keep your beverage cold with this USB powered Minifridge.  Single can capacity - 24cu Inches.  Red plastic.",
-    "Appliances > Refridgerators, Freezers & Ice Makers",
+    "Appliances > Refridgerators > Freezers & Ice Makers",
     23.97,
     3.4,
     1.41,
@@ -93,7 +93,7 @@ ALL_PRODUCTS.push(desktopFridge)
 let baconBandageStrips = new Product (
     "Bacon Bandage Strips", 
     "Ouch! That smarts! Treat your minor cuts, scrapes and scratches with the incredible healing power of meat.",
-    "Health & Household > Bandaging Supplies, Adhesive Bandages",
+    "Health & Household > Bandaging Supplies > Adhesive Bandages",
     5.99,
     1.5,
     1.85,
@@ -104,7 +104,7 @@ ALL_PRODUCTS.push(baconBandageStrips);
 let nicCagePillow = new Product (
     "Nicolas Cage Sequin Pillow",
     "Get to sleep right next to Nic Cage every night!  Magic sequin pillow case and pillow from red to Nic Cage.",
-    "Bedding > Decorative Pillows, Inserts & Covers > Throw Pillows",
+    "Bedding > Decorative Pillows > Inserts & Covers > Throw Pillows",
     18.99,
     4.5,
     1.5,
@@ -115,10 +115,10 @@ ALL_PRODUCTS.push(nicCagePillow);
 let roastBeefandSalt = new Product (
     "Bath Salts: Roast Beef Sandwich",
     "Amber bath salts: Luxury.  Best gifts for best friends, significant other.  Au jus french dip.",
-    "Bath & Bathing Accessories > Bath > Minerals & Salts",
+    "Bath & Bathing Accessories > Minerals & Salts",
     14.95,
     4.7,
-    .5,
+    1.5,
     "imgs/roast-beef-bath.png"
 );   
 ALL_PRODUCTS.push(roastBeefandSalt);

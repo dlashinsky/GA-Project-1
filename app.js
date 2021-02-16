@@ -74,9 +74,9 @@ const guessWeightButtonEl = document.querySelector("#weight-guess-button")
 const weightInputDiv = document.querySelector(".weight-input-div")   
 const userWinEl = document.querySelector("#user-win-msg")
 const compWinEl = document.querySelector("comp-win-msg")
-const resetButtonEl = document.querySelector(".reset-btn")
+const resetButtonEl = document.querySelector("#reset-btn")
+const skipItemBtnEL = document.querySelector("#skip-item-btn");
 const documentBody = document.querySelector(".body")
-const newItemBtnEL = document.querySelector(".new-item-btn");
 
 //////Round Update Modal  DOMs///// 
 const modalDivEl = document.querySelector("#myModal");
@@ -110,7 +110,7 @@ const modal2MsgEl = document.querySelector("#modal-message")
 
 document.addEventListener('DOMContentLoaded', initializeGame);
 resetButtonEl.addEventListener('click', resetGame);
-newItemBtnEL.addEventListener('click', newItemConds);
+skipItemBtnEL.addEventListener('click', newItemConds);
 
 // test = loadSound("music/background.mp3")
 

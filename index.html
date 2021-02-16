@@ -5,11 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Zilla+Slab&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Zilla+Slab&family=Monoton&family=Orbitron:wght@600&family=Russo+One&display=swap" rel="stylesheet">
     <title>TPIR Amazon rendition</title>
 </head>
 <body class = "body">
+    <div class = game-start-container>
+        <div class = logo-divs>
+            <div class = amazon-logo-div>
+                <img id = amazon src="imgs/amazon-logo.png" alt="image not found">
+            </div>
+            <div class = TPIR-logo-div>
+                <img id = TPIR src="imgs/tpir-logo.png" alt="image not found">
+            </div>
+        </div>
 
+
+    </div>
     <div class = main-container>
 
     <div class = left-mid-divs-container>
@@ -24,9 +35,13 @@
             </div>
             <div class = GS-player-score-div> Your Score                   
                 <div class = GS-values id= player-score>45</div>
-            </div>                   
-            <button class = reset-btn> RESET GAME</button>
-            <button class = new-item-btn> NEW ITEM</button>
+            </div>
+            <div class = button-div>  
+                <div class = border-btn-div>             
+                <button class = upper-btn id = reset-btn> RESET</button>
+                </div> 
+                <button class = upper-btn id = skip-item-btn> SKIP</button>
+            </div>  
         </div>
 
             <div class = product-info-container>
